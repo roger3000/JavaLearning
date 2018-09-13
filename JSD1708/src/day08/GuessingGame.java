@@ -14,6 +14,7 @@ public class GuessingGame {
 		
 		while (true) {
 			System.out.println("请输入字母： ");
+			@SuppressWarnings("resource")
 			Scanner scan = new Scanner(System.in);
 			String s = scan.nextLine().toUpperCase();
 			if (s.equals("EXIT")) {  		//基本类型才能用== ，String非基本类型 需要用equals
