@@ -10,6 +10,12 @@ package oo.dayo2;
  *public修饰的类, 必须与文件名相同
  */
 public class OverloadDemo {
+	public OverloadDemo() {
+		// TODO Auto-generated constructor stub
+	}
+	public OverloadDemo(String name, int age) {
+		
+	}
 	public static void main(String[] args) {
 		Aoo o = new Aoo();
 		o.say();
