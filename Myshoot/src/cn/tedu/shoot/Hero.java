@@ -26,6 +26,6 @@ public class Hero {
 	}
 	
 	void step() {
-		System.out.println("Ӣ�ۻ��л�ͼƬ��");
+		System.out.println(" ");
 	}
 }
