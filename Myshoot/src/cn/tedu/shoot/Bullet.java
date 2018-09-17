@@ -11,6 +11,10 @@ public class Bullet {
 	int y;
 	int speed;
 	
+	Bullet(){
+		
+	}
+	
 	/**
 	 * 子弹移动
 	 */

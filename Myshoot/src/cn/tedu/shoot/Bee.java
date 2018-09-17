@@ -1,5 +1,7 @@
 package cn.tedu.shoot;
 
+import java.util.Random;
+
 public class Bee {
 	int width;
 	int height;
@@ -9,8 +11,18 @@ public class Bee {
 	int ySpeed;
 	int awardType;
 	
+	public Bee() {
+		width =  60;
+		height = 50;
+		x = new Random().nextInt(400-width);
+		y = -height;
+		xSpeed = 1;
+		ySpeed = 2;
+		awardType = new Random().nextInt(2);
+	}
+	
 	void step() {
-		System.out.println("小蜜蜂的x坐标移动了："+xSpeed);
-		System.out.println("小蜜蜂的y坐标移动了："+ySpeed);
+		System.out.println(" "+xSpeed);
+		System.out.println(" "+ySpeed);
 	}
 }

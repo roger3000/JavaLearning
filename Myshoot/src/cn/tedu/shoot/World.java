@@ -13,13 +13,7 @@ public class World {
 	Bullet bt2;
 	
 	void action() {		//测试代码
-		sky = new Sky();
-		sky.height = 700;
-		sky.width = 400;
-		sky.x = 0;
-		sky.y = 0;
-		sky.speed = 10;
-		sky.step();
+		
 	}
 	
 	public static void main(String[] args) {

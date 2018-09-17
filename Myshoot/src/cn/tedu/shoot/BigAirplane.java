@@ -1,5 +1,7 @@
 package cn.tedu.shoot;
 
+import java.util.Random;
+
 public class BigAirplane {
 	int width;
 	int height;
@@ -7,7 +9,15 @@ public class BigAirplane {
 	int y;
 	int speed;
 	
+	public BigAirplane() {
+		width = 69;
+		height = 99;
+		x = new Random().nextInt(400-width);
+		y = -height;
+		speed = 1;
+	}
+	
 	void step() {
-		System.out.println("大敌机的y坐标移动了："+speed);
+		System.out.println(" "+speed);
 	}
 }

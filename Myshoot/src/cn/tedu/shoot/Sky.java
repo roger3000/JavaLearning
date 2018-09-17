@@ -12,6 +12,15 @@ public class Sky {
 	int speed;
 	int y1;		//y1坐标(图片轮换)
 	
+	public Sky() {
+		width = 400;
+		height = 700;
+		x = 0;
+		y = 0;
+		speed = 1;
+		y1 = -height;
+	}
+	
 	/**
 	 * 天空移动
 	 */
