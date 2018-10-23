@@ -11,9 +11,9 @@ public class Bullet {
 	int y;
 	int speed;
 	
-	Bullet(Airplane airplane, int speed){
-		this.x = airplane.x;
-		this.y = airplane.y;
+	Bullet(Hero hero, int speed){
+		this.x = hero.x;
+		this.y = hero.y;
 		width = 8;
 		height = 14;
 		this.speed = speed;

@@ -1,4 +1,4 @@
-package oo.dayo2;
+package oo.day02;
 
 public class StudentTest {
 	public static void main(String[] args) {

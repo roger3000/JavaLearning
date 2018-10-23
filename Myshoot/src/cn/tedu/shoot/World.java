@@ -1,43 +1,62 @@
 package cn.tedu.shoot;
 
+import java.util.Iterator;
+
+//整个世界
 public class World {
 	Sky sky;
 	Hero hero;
-	Airplane a1;
-	Airplane a2;
-	BigAirplane ba1;
-	BigAirplane ba2;
-	Bee b1;
-	Bee b2;
-	Bullet bt1;
-	Bullet bt2;
+	Airplane[] ap;
+	BigAirplane[] bap;
+	Bullet[] bt;
+	Bee[] bee;
 	
 	void action() {		//测试代码
-		sky = new Sky();
+		//生成主角机
 		hero = new Hero();
-		a1 = new Airplane();
-		a2 = new Airplane();
-		ba1 = new BigAirplane();
-		ba2 = new BigAirplane();
-		b1 = new Bee();
-		b2 = new Bee();
-		bt1 = new Bullet(a1, 3);
-		bt2 = new Bullet(a2, 6);
 		
-		sky.step();
-		hero.step();
-		a1.step();
-		a2.step();
-		ba1.step();
-		ba2.step();
-		b1.step();
-		b2.step();
-		bt1.step();
-		bt2.step();
+		//生成敌机
+		ap = new Airplane[3];
+		ap[0] = new Airplane();
+		ap[1] = new Airplane();
+		ap[2] = new Airplane();
+		for (Airplane airplane : ap) {
+			System.out.println(airplane.x+","+airplane.y);
+			airplane.step();
+		}
+		
+		//生成大敌机
+		bap = new BigAirplane[3];
+		bap[0] = new BigAirplane();
+		bap[1] = new BigAirplane();
+		bap[2] = new BigAirplane();
+		
+		for (BigAirplane bigAirplane : bap) {
+			bigAirplane.step();
+		}
+		
+		//生成子弹
+		bt = new Bullet[3];
+		bt[0] = new Bullet(hero, 3);
+		bt[1] = new Bullet(hero, 3);
+		bt[2] = new Bullet(hero, 3);
+		
+		for (Bullet bullet : bt) {
+			bullet.step();
+		}
+		
+		//生成小蜜蜂
+		bee = new Bee[3];
+		bee[0] = new Bee();
+		bee[1] = new Bee();
+		bee[2] = new Bee();
+		for (Bee bee : bee) {
+			bee.step();
+		}
 	}
 	
 	public static void main(String[] args) {
-		World world = new World();
+		World world = new World();			//创建世界
 		world.action();
 	}
 }
