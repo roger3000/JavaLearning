@@ -2,22 +2,19 @@ package cn.tedu.shoot;
 
 import java.awt.image.BufferedImage;
 
-public class Hero {
-	int height;
-	int width;
-	int x;
-	int y;
+public class Hero extends FlyingObject {
+	
 	int life;
 	int doubleFire;
 	BufferedImage image ;
 	
 	public Hero() {
-		width = 97;
-		height = 124;
-		x = 140;
-		y = 400;
-		life = 3;
-		doubleFire = 0;
+		this.width = 97;
+		this.height = 124;
+		this.x = 140;
+		this.y = 400;
+		this.life = 3;
+		this.doubleFire = 0;
 	}
 	
 	void moveTo(int x, int y) {
@@ -25,9 +22,7 @@ public class Hero {
 		this.y = y-(height/2);
 	}
 	
-	void step() {
-		System.out.println(" ");
-	}
+	
 
 	public int getX() {
 		return x;

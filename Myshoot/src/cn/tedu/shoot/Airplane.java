@@ -1,32 +1,25 @@
 package cn.tedu.shoot;
 
 import java.util.Random;
-
-public class Airplane {
-	int wigth;
-	int height;
-	int x;
-	int y;
+//小敌机
+public class Airplane extends FlyingObject {
+	
 	int speed;
 	
 	public Airplane() {
-		wigth = 49;
+		width = 49;
 		height = 36;
-		x = new Random().nextInt(400-wigth);
+		x = new Random().nextInt(400-width);
 		y = -height;
 		speed = 2;
 	}
-	
-	void step() {
-		System.out.println(" "+speed);
-	}
 
-	public int getWigth() {
-		return wigth;
+	public int getWidth() {
+		return width;
 	}
 
 	public void setWigth(int wigth) {
-		this.wigth = wigth;
+		this.width = wigth;
 	}
 
 	public int getHeight() {

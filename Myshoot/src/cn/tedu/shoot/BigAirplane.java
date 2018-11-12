@@ -2,11 +2,8 @@ package cn.tedu.shoot;
 
 import java.util.Random;
 
-public class BigAirplane {
-	int width;
-	int height;
-	int x;
-	int y;
+public class BigAirplane extends FlyingObject {
+
 	int speed;
 	
 	public BigAirplane() {

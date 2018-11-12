@@ -2,11 +2,8 @@ package cn.tedu.shoot;
 
 import java.util.Random;
 
-public class Bee {
-	int width;
-	int height;
-	int x;
-	int y;
+public class Bee extends FlyingObject{
+
 	int xSpeed;
 	int ySpeed;
 	int awardType;

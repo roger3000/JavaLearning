@@ -4,11 +4,8 @@ package cn.tedu.shoot;
  * @author roger
  *
  */
-public class Bullet {
-	int width;
-	int height;
-	int x;
-	int y;
+public class Bullet extends FlyingObject {
+
 	int speed;
 	
 	Bullet(Hero hero, int speed){
