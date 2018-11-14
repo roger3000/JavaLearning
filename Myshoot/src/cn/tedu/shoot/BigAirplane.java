@@ -7,14 +7,11 @@ public class BigAirplane extends FlyingObject {
 	int speed;
 	
 	public BigAirplane() {
-		width = 69;
-		height = 99;
-		x = new Random().nextInt(400-width);
-		y = -height;
+		super(69, 99);
 		speed = 1;
 	}
 	
 	void step() {
-		System.out.println(" "+speed);
+		System.out.println("大敌机移动了 "+speed);
 	}
 }

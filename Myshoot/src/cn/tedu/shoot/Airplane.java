@@ -7,10 +7,7 @@ public class Airplane extends FlyingObject {
 	int speed;
 	
 	public Airplane() {
-		width = 49;
-		height = 36;
-		x = new Random().nextInt(400-width);
-		y = -height;
+		super(49, 36);
 		speed = 2;
 	}
 

@@ -9,17 +9,14 @@ public class Bee extends FlyingObject{
 	int awardType;
 	
 	public Bee() {
-		width =  60;
-		height = 50;
-		x = new Random().nextInt(400-width);
-		y = -height;
+		super(60, 50);
 		xSpeed = 1;
 		ySpeed = 2;
 		awardType = new Random().nextInt(2);
 	}
 	
 	void step() {
-		System.out.println(" "+xSpeed);
-		System.out.println(" "+ySpeed);
+		System.out.println("小蜜蜂X轴: "+xSpeed);
+		System.out.println("小蜜蜂y轴 "+ySpeed);
 	}
 }

@@ -6,53 +6,49 @@ import java.util.Iterator;
 public class World {
 	Sky sky;
 	Hero hero;
-	Airplane[] ap;
-	BigAirplane[] bap;
-	Bullet[] bt;
-	Bee[] bee;
+	FlyingObject[] enemies = new FlyingObject[9];
+	Bullet[] bt = new Bullet[3];
+
 	
 	void action() {		//测试代码
 		//生成主角机
 		hero = new Hero();
 		
 		//生成敌机
-		ap = new Airplane[3];
-		ap[0] = new Airplane();
-		ap[1] = new Airplane();
-		ap[2] = new Airplane();
-		for (Airplane airplane : ap) {
-			System.out.println(airplane.x+","+airplane.y);
-			airplane.step();
-		}
+		enemies[0] = new Airplane();
+		enemies[1] = new Airplane();
+		enemies[2] = new Airplane();
+
 		
 		//生成大敌机
-		bap = new BigAirplane[3];
-		bap[0] = new BigAirplane();
-		bap[1] = new BigAirplane();
-		bap[2] = new BigAirplane();
+		enemies[3] = new BigAirplane();
+		enemies[4] = new BigAirplane();
+		enemies[5] = new BigAirplane();
 		
-		for (BigAirplane bigAirplane : bap) {
-			bigAirplane.step();
-		}
+		//生成小蜜蜂
+		enemies[6] = new Bee();
+		enemies[7] = new Bee();
+		enemies[8] = new Bee();
 		
 		//生成子弹
-		bt = new Bullet[3];
 		bt[0] = new Bullet(hero, 3);
 		bt[1] = new Bullet(hero, 3);
 		bt[2] = new Bullet(hero, 3);
 		
-		for (Bullet bullet : bt) {
-			bullet.step();
+		//移动
+		for (int i = 0; i < enemies.length; i++) {
+			enemies[i].step();
 		}
 		
-		//生成小蜜蜂
-		bee = new Bee[3];
-		bee[0] = new Bee();
-		bee[1] = new Bee();
-		bee[2] = new Bee();
-		for (Bee bee : bee) {
-			bee.step();
-		}
+		//判断碰撞
+//		for (int i = 0; i < enemies.length; i++) {
+//			for (int j = 0; j < bt.length; j++) {
+//				if(enemies[i].x == bt[j].x && enemies[i].y == bt[j].y) {
+//					System.out.println("crashed!");
+//				}
+//			}
+//		}
+
 	}
 	
 	public static void main(String[] args) {

@@ -9,10 +9,7 @@ public class Bullet extends FlyingObject {
 	int speed;
 	
 	Bullet(Hero hero, int speed){
-		this.x = hero.x;
-		this.y = hero.y;
-		width = 8;
-		height = 14;
+		super(8, 14, hero.x, hero.y);
 		this.speed = speed;
 	}
 	

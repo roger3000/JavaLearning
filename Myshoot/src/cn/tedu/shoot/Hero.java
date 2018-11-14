@@ -9,10 +9,7 @@ public class Hero extends FlyingObject {
 	BufferedImage image ;
 	
 	public Hero() {
-		this.width = 97;
-		this.height = 124;
-		this.x = 140;
-		this.y = 400;
+		super(97, 124, 140, 400);
 		this.life = 3;
 		this.doubleFire = 0;
 	}
