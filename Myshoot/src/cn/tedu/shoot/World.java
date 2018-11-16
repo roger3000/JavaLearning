@@ -1,18 +1,28 @@
 package cn.tedu.shoot;
 
-import java.util.Iterator;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 //整个世界
-public class World {
-	Sky sky;
-	Hero hero;
+public class World extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private static final int WIDTH = 400;
+	private static final int HEIGHT = 700;
+	Sky sky = new Sky();
+	Hero hero = new Hero();
 	FlyingObject[] enemies = new FlyingObject[9];
-	Bullet[] bt = new Bullet[3];
+	Bullet[] bt = new Bullet[2];
 
 	
-	void action() {		//测试代码
-		//生成主角机
-		hero = new Hero();
+	void action() {		
+		//天空
+		sky.step();
+		
+		//英雄机
+		hero.step();
 		
 		//生成敌机
 		enemies[0] = new Airplane();
@@ -33,7 +43,7 @@ public class World {
 		//生成子弹
 		bt[0] = new Bullet(hero, 3);
 		bt[1] = new Bullet(hero, 3);
-		bt[2] = new Bullet(hero, 3);
+
 		
 		//移动
 		for (int i = 0; i < enemies.length; i++) {
@@ -52,7 +62,15 @@ public class World {
 	}
 	
 	public static void main(String[] args) {
-		World world = new World();			//创建世界
+		JFrame frame = new JFrame();
+		World world = new World();
+		frame.add(world);
+		
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(WIDTH, HEIGHT);
+		frame.setLocationRelativeTo(null);		//设置窗口居中
+		frame.setVisible(true);
+		
 		world.action();
 	}
 }

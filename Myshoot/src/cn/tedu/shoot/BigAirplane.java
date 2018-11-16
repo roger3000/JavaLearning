@@ -11,7 +11,7 @@ public class BigAirplane extends FlyingObject {
 		speed = 1;
 	}
 	
-	void step() {
+	public void step() {
 		System.out.println("大敌机移动了 "+speed);
 	}
 }

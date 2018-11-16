@@ -4,10 +4,10 @@ import java.util.Random;
 
 /** 飞行物*/
 public class FlyingObject {
-	int height;
-	int width;
-	int x;
-	int y;
+	protected int height;
+	protected int width;
+	protected int x;
+	protected int y;
 	
 	public FlyingObject() {
 	}
@@ -27,7 +27,7 @@ public class FlyingObject {
 	}
 	
 	//飞行物移动
-	void step() {
+	public void step() {
 		System.out.println("飞行物移动了");
 	}
 }

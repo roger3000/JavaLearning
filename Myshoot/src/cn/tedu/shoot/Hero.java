@@ -4,9 +4,9 @@ import java.awt.image.BufferedImage;
 
 public class Hero extends FlyingObject {
 	
-	int life;
-	int doubleFire;
-	BufferedImage image ;
+	private int life;
+	private int doubleFire;
+	private BufferedImage image ;
 	
 	public Hero() {
 		super(97, 124, 140, 400);
@@ -18,24 +18,30 @@ public class Hero extends FlyingObject {
 		this.x = x-(width/2);
 		this.y = y-(height/2);
 	}
-	
-	
 
-	public int getX() {
-		return x;
+	public int getLife() {
+		return life;
 	}
 
-	public void setX(int x) {
-		this.x = x;
+	public void setLife(int life) {
+		this.life = life;
 	}
 
-	public int getY() {
-		return y;
+	public int getDoubleFire() {
+		return doubleFire;
 	}
 
-	public void setY(int y) {
-		this.y = y;
+	public void setDoubleFire(int doubleFire) {
+		this.doubleFire = doubleFire;
 	}
-	
+
+	public BufferedImage getImage() {
+		return image;
+	}
+
+	public void setImage(BufferedImage image) {
+		this.image = image;
+	}
+		
 	
 }

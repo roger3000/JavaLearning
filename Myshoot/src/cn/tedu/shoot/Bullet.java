@@ -6,7 +6,7 @@ package cn.tedu.shoot;
  */
 public class Bullet extends FlyingObject {
 
-	int speed;
+	private int speed;
 	
 	Bullet(Hero hero, int speed){
 		super(8, 14, hero.x, hero.y);
@@ -16,7 +16,17 @@ public class Bullet extends FlyingObject {
 	/**
 	 * 子弹移动
 	 */
-	void step() {
+	public void step() {
 		System.out.println("子弹的y坐标动了"+speed);
 	}
+
+	public int getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
+	
+	
 }

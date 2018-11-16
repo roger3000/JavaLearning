@@ -15,8 +15,8 @@ public class Bee extends FlyingObject{
 		awardType = new Random().nextInt(2);
 	}
 	
-	void step() {
-		System.out.println("小蜜蜂X轴: "+xSpeed);
-		System.out.println("小蜜蜂y轴 "+ySpeed);
+	public void step() {
+		System.out.println("小蜜蜂X轴移动了: "+xSpeed);
+		System.out.println("小蜜蜂y轴移动了:"+ySpeed);
 	}
 }

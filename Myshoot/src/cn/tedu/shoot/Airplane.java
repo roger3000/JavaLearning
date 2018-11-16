@@ -4,43 +4,16 @@ import java.util.Random;
 //小敌机
 public class Airplane extends FlyingObject {
 	
-	int speed;
+	private int speed;
 	
 	public Airplane() {
 		super(49, 36);
 		speed = 2;
 	}
-
-	public int getWidth() {
-		return width;
-	}
-
-	public void setWigth(int wigth) {
-		this.width = wigth;
-	}
-
-	public int getHeight() {
-		return height;
-	}
-
-	public void setHeight(int height) {
-		this.height = height;
-	}
-
-	public int getX() {
-		return x;
-	}
-
-	public void setX(int x) {
-		this.x = x;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public void setY(int y) {
-		this.y = y;
+	
+	//小敌机移动
+	public void step() {
+		System.out.println("小敌机移动了"+ speed);
 	}
 
 	public int getSpeed() {
