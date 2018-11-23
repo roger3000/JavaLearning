@@ -9,8 +9,8 @@ public class World extends JPanel{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private static final int WIDTH = 400;
-	private static final int HEIGHT = 700;
+	public static final int WIDTH = 400;
+	public static final int HEIGHT = 700;
 	Sky sky = new Sky();
 	Hero hero = new Hero();
 	FlyingObject[] enemies = new FlyingObject[9];

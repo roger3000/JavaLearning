@@ -1,4 +1,7 @@
 package cn.tedu.shoot;
+
+import java.awt.image.BufferedImage;
+
 /**
  * 子弹
  * @author roger
@@ -7,6 +10,10 @@ package cn.tedu.shoot;
 public class Bullet extends FlyingObject {
 
 	private int speed;
+	private static BufferedImage image;
+	static {
+		image = loadImage("bullet.png");
+	}
 	
 	Bullet(Hero hero, int speed){
 		super(8, 14, hero.x, hero.y);

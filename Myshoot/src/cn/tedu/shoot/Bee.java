@@ -1,12 +1,21 @@
 package cn.tedu.shoot;
 
+import java.awt.image.BufferedImage;
 import java.util.Random;
 
 public class Bee extends FlyingObject{
 
-	int xSpeed;
-	int ySpeed;
-	int awardType;
+	private int xSpeed;
+	private int ySpeed;
+	private int awardType;
+	private static BufferedImage[] images;
+	static {
+		images = new BufferedImage[5];
+		for (int i = 0; i < images.length; i++) {
+			images[i] = loadImage("bee"+i+".png");
+		}
+	}
+	
 	
 	public Bee() {
 		super(60, 50);
