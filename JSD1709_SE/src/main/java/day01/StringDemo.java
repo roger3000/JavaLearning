@@ -12,6 +12,7 @@ public class StringDemo {
 //		String str = "hello world";
 //		str = str + "!";
 		
+		
 		String s1 = "123abc";
 		//s2重用s1创建的对象
 		String s2 = "123abc";
