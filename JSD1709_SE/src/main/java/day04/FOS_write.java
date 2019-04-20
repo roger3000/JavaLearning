@@ -31,11 +31,28 @@ import java.io.IOException;
  */
 public class FOS_write{
 	public static void main(String[] args) throws IOException{
+		/*
+		 * FileOutputStream的常用构造方法
+		 * 
+		 * FileOutputStream（String path）
+		 * FileOutputStream（File file）
+		 * 打开一个对给帝国文件进行操作的文件输出流
+		 * 这种创建方式为：覆盖写操作
+		 * 
+		 * FileOutputStream（String path，boolean appedn）
+		 * FileOutputStream（File file，boolean append）
+		 * 当调用上述两个构造方法时，若第二个参数传入的为true
+		 * 则当前文件输出流为追加写入模式
+		 */
 		FileOutputStream fos = 
-				new FileOutputStream("fos.txt");
+				new FileOutputStream("fos.txt",false);
 		
 		String str = "他不在和谁谈论相逢的孤岛";
 		fos.write(str.getBytes());
+		System.out.println("输出完毕");
+		
+		String str1 = "我";
+		fos.write(str1.getBytes());
 		System.out.println("输出完毕");
 		fos.close();
 	}

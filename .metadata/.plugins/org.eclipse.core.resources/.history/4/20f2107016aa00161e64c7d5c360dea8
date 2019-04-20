@@ -1,8 +1,0 @@
-package com.eric.java.ericzone.action.mgt;
-
-import com.eric.java.basecontainer.baseweb.EricAction;
-
-public class MgtMlogQueryAction extends EricAction {
-	
-	
-}
