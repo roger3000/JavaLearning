@@ -1,0 +1,45 @@
+package com.eric.java.ericzone.services;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.poi.hssf.record.formula.functions.Count;
+
+import com.eric.java.basecontainer.hibernate.AbstractService;
+import com.eric.java.basecontainer.hibernate.exception.ServicesException;
+import com.eric.java.ericzone.awares.IMLogAware;
+import com.eric.java.ericzone.object.MLog;
+import com.eric.java.ericzone.object.MSms;
+
+import net.sf.hibernate.Session;
+import net.sf.hibernate.HibernateException;
+import net.sf.hibernate.Query;
+
+
+public class MLogService extends AbstractService implements IMLogAware{
+
+	@Override
+	public MLog insertMlog(MLog mlog) throws ServicesException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List getRegionMlogListByQueryMap(Map<String, String> queryMap, String regionCode) throws ServicesException {
+		return null;
+	}
+
+	@Override
+	public MLog getMlog(Integer mId) throws ServicesException {
+		return null;
+	}
+
+	@Override
+	public int getRegionMlogListSizeByQueryMap(Map<String, String> queryMap, String regionCode)
+			throws ServicesException {
+		return 0;
+	}
+
+	
+
+}

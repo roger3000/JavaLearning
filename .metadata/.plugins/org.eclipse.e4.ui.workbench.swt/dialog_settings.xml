@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="ShowViewDialog">
+		<item value="474" key="DIALOG_WIDTH"/>
+		<item value="1|Inziu Iosevka SC|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|-122|0|0|0|49|Inziu Iosevka SC" key="DIALOG_FONT_NAME"/>
+		<item value="org.eclipse.jdt.ui.PackageExplorer" key="ShowViewDialog.STORE_SELECTED_VIEW_ID"/>
+		<item value="473" key="DIALOG_HEIGHT"/>
+		<item value="732" key="DIALOG_X_ORIGIN"/>
+		<item value="215" key="DIALOG_Y_ORIGIN"/>
+		<list key="ShowViewDialog.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="Java"/>
+			<item value="Java Browsing"/>
+		</list>
+	</section>
+</section>

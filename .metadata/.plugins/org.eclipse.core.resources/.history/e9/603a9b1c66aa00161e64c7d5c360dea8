@@ -1,0 +1,88 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+	<%@ taglib prefix="ww" uri="/webwork" %>
+<header class="am-topbar admin-header am-input-sm am-topbar-fixed-top">
+  <div class="am-topbar-brand">
+    <strong><img src="<%=request.getContextPath() %>/<ww:property value="paramConfig.getStringValue('logo_in')"/>" width="40" height="40"/><ww:property value="paramConfig.getStringValue('project_name')"/></strong> <small>后台管理系统</small>
+  </div>
+
+  <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+
+  <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+
+    <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+      
+      <ww:iterator value="#session['menu']" id="parentMenu">
+	      <ww:if test="#parentMenu.menuCode==1">
+		       <li><a href="<%=request.getContextPath() %>/mgt/<ww:property value='#parentMenu.menuUrl'/>"><span class="am-icon-home"></span> <ww:property value="#parentMenu.menuName"/></a></li>
+	      </ww:if>
+	      <ww:elseif test="#parentMenu.menuParentCode==0">
+	      	<li class="am-dropdown" data-am-dropdown>
+		        <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+		          <span class="am-icon-users"></span><ww:property value="#parentMenu.menuName"/><span class="am-icon-caret-down"></span>
+		        </a>
+		        <ul class="am-dropdown-content">
+		        	<ww:iterator value="#session['menu']">
+		        		<ww:if test="[0].menuParentCode==#parentMenu.menuCode">
+			          		<li><a href="<%=request.getContextPath() %>/mgt/<ww:property value='[0].menuUrl'/>"><span class="am-icon-cog"></span> <ww:property value="[0].menuName"/></a></li>
+		        		</ww:if>
+		          	</ww:iterator>
+		        </ul>
+		      </li>
+	      </ww:elseif>
+      </ww:iterator>
+
+      <ww:if test="#session['manage'].mRole!=null && (#session['manage'].mRole.indexOf('operator')>-1 ||#session['manage'].mRole.indexOf('risk')>-1 ||#session['manage'].mRole.indexOf('finance')>-1 ||#session['manage'].mRole.indexOf('customer')>-1 ||#session['manage'].mRole.indexOf('manage')>-1 || #session['manage'].mRole.indexOf('admin')>-1 )">
+      <li class="am-dropdown" data-am-dropdown>
+        <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+          <span class="am-icon-users"></span> 系统管理 <span class="am-icon-caret-down"></span>
+        </a>
+        <ul class="am-dropdown-content">
+        
+          <!-- 菜单管理，只有admin可以访问 -->
+          <ww:if test="#session['manage'].mRole!=null && #session['manage'].mRole.indexOf('admin')>-1 ">
+          <li><a href="<%=request.getContextPath() %>/mgt/menuquery.xhtml?u_page=true&u_dataright=true"><span class="am-icon-cog"></span> 菜单管理</a></li>
+          </ww:if>
+          
+          <ww:if test="#session['manage'].mRole!=null && (#session['manage'].mRole.indexOf('operator')>-1 ||#session['manage'].mRole.indexOf('manage')>-1 || #session['manage'].mRole.indexOf('admin')>-1 )">
+          <li><a href="<%=request.getContextPath() %>/mgt/managequery.xhtml?u_page=true&u_dataright=true"><span class="am-icon-cog"></span> 管理员管理</a></li>
+          </ww:if>
+          <ww:if test="#session['manage'].mRole!=null && #session['manage'].mRole.indexOf('admin')>-1">
+          <li><a href="<%=request.getContextPath() %>/mgt/rolequery.xhtml"><span class="am-icon-cog"></span> 角色管理</a></li>
+          </ww:if>
+          <ww:if test="#session['manage'].mRole!=null && (#session['manage'].mRole.indexOf('operator')>-1 ||#session['manage'].mRole.indexOf('finance')>-1 ||#session['manage'].mRole.indexOf('input')>-1 ||#session['manage'].mRole.indexOf('customer')>-1 ||#session['manage'].mRole.indexOf('manage')>-1 || #session['manage'].mRole.indexOf('admin')>-1 )">
+          <li><a href="<%=request.getContextPath() %>/mgt/merchantquery.xhtml"><span class="am-icon-cog"></span> 商户管理</a></li>
+          <li><a href="<%=request.getContextPath() %>/mgt/productquery.xhtml"><span class="am-icon-cog"></span> 产品管理</a></li>
+          </ww:if>
+          <ww:if test="#session['manage'].mRole!=null && (#session['manage'].mRole.indexOf('admin')>-1 )">
+          <li><a href="<%=request.getContextPath() %>/mgt/producttypequery.xhtml"><span class="am-icon-cog"></span> 产品类型管理</a></li>
+          </ww:if>  
+          <ww:if test="#session['manage'].mRole!=null && (#session['manage'].mRole.indexOf('operator')>-1 ||#session['manage'].mRole.indexOf('risk')>-1 ||#session['manage'].mRole.indexOf('manage')>-1 ||#session['manage'].mRole.indexOf('finance')>-1 || #session['manage'].mRole.indexOf('customer')>-1 || #session['manage'].mRole.indexOf('admin')>-1 )">
+          <li><a href="<%=request.getContextPath() %>/mgt/smsquery.xhtml"><span class="am-icon-cog"></span> 短信管理</a></li>
+          
+          </ww:if>
+          <ww:if test="#session['manage'].mRole!=null && #session['manage'].mRole.indexOf('admin')>-1 ">
+          <li><a href="<%=request.getContextPath() %>/mgt/orgquery.xhtml"><span class="am-icon-cog"></span> 机构管理</a></li>
+          <li><a href="<%=request.getContextPath() %>/mgt/regionManage.xhtml"><span class="am-icon-cog"></span> 归属管理</a></li>
+          <li><a href="<%=request.getContextPath() %>/mgt/dimquery.xhtml"><span class="am-icon-cog"></span> 字典管理</a></li>
+          <li><a href="<%=request.getContextPath() %>/mgt/correctData.xhtml"><span class="am-icon-cog"></span> 数据修正</a></li>
+          </ww:if>                            
+        </ul>
+      </li>
+      </ww:if> 
+                                        
+      <li class="am-dropdown" data-am-dropdown>
+        <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+          <span class="am-icon-users"></span> 个人中心 <span class="am-icon-caret-down"></span>
+        </a>
+        <ul class="am-dropdown-content">
+          <li><a href="<%=request.getContextPath() %>/mgt/areaManage.xhtml"><span class="am-icon-cog"></span> 地址管理</a></li>
+          <li><a href="<%=request.getContextPath() %>/mgt/updatePwd.xhtml"><span class="am-icon-cog"></span> 修改密码</a></li>
+          <li><a href="<%=request.getContextPath() %>/mgt/logout.xhtml"><span class="am-icon-power-off"></span> 退出</a></li>
+        </ul>
+      </li> 
+      
+    </ul>
+  </div>
+</header>
+

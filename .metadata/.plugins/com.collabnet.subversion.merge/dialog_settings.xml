@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="false" key="MergeWizardStandardPage.selectRevisions"/>
+	<item value="Merge a &amp;range of revisions" key="MergeWizardMainPage.lastInputProvider"/>
+	<item value="13" key="com.collabnet.subversion.merge.wizards.MergeWizard.location.y"/>
+	<item value="402" key="com.collabnet.subversion.merge.wizards.MergeWizard.location.x"/>
+	<item value="1117" key="com.collabnet.subversion.merge.wizards.MergeWizard.size.x"/>
+	<item value="762" key="com.collabnet.subversion.merge.wizards.MergeWizard.size.y"/>
+</section>

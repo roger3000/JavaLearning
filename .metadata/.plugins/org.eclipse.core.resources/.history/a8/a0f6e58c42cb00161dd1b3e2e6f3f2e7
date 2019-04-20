@@ -1,0 +1,568 @@
+package com.eric.java.ericzone.services;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
+import net.sf.hibernate.HibernateException;
+import net.sf.hibernate.Query;
+import net.sf.hibernate.Session;
+
+import com.eric.java.basecontainer.hibernate.AbstractService;
+import com.eric.java.basecontainer.hibernate.exception.ServicesException;
+import com.eric.java.ericzone.awares.IApplyPayAware;
+import com.eric.java.ericzone.object.ApplayTotal;
+import com.eric.java.ericzone.object.ApplyPay;
+import com.eric.java.ericzone.object.Rebates;
+import com.mysql.jdbc.ResultSetMetaData;
+
+public class ApplyPayService extends AbstractService implements IApplyPayAware {
+
+	@Override
+	public List getRegionApplyPayList(String regionCode) throws ServicesException {
+		Session session = this.getSession();
+		try {
+			String fromClause = "from com.eric.java.ericzone.object.ApplyPay as applyPay where applyPay.mRegionCode = ? order by applyPay.aId ";
+			Query query = session.createQuery(fromClause);
+			query.setString(0, regionCode);
+			List list = query.list();
+			if (list != null && list.size() > 0) {
+				return list;
+			} else {
+				return null;
+			}
+		} catch (HibernateException e) {
+			throw new ServicesException(e.toString());
+		} finally {
+			this.releaseSession(session);
+		}
+	}
+
+	@Override
+	public void updateApplyPay(ApplyPay applyPay) throws ServicesException {
+		this.update(applyPay);
+	}
+
+	@Override
+	public void deleteApplyPay(ApplyPay applyPay) throws ServicesException {
+		this.delete(applyPay);
+	}
+
+	@Override
+	public ApplyPay insertApplyPay(ApplyPay applyPay) throws ServicesException {
+		return (ApplyPay) this.save(applyPay);
+	}
+
+	@Override
+	public ApplyPay getApplyPay(int mId) throws ServicesException {
+		return (ApplyPay) this.load(ApplyPay.class, mId);
+	}
+
+	/* 商户返点导出 */
+	@Override
+	public List getMerchantRebatesList(Map<String, String> queryMap, String regionCode) throws ServicesException, SQLException {
+		Session session = this.getSession();
+		try {
+			String hqlStr = "select applyPay.mOrgCode,applyPay.mMerchantCode,applyPay.mCompanyOwn,applyPay.aProductType,sum(applyPay.aApprovalMount) as aApprovalMountTotal "
+					+ " from trip_apply_pay as applyPay  "
+					+ " where applyPay.aApplyPayStatus in('3','5','6','8','9','15')  "
+					+ " and applyPay.mRegionCode = ?  ";
+			if (queryMap != null && queryMap.size() > 0) {
+				if (queryMap.containsKey("aApprovalDate"))
+					hqlStr += " and applyPay.aApprovalDate like ? ";
+				if(queryMap.containsKey("mDataRight")){
+	                   hqlStr += " and applyPay.mOrgCode in( ";
+	                   hqlStr += " select a.mOrgCode ";
+	                   hqlStr += " from trip_org as a ";
+	                   hqlStr += " where a.mDataRight like ? ";
+	                   hqlStr += " ) ";
+	            }
+			}
+			hqlStr+=" group by applyPay.mOrgCode,applyPay.mMerchantCode,applyPay.mCompanyOwn,applyPay.aProductType ";
+			 PreparedStatement query = session.connection().prepareStatement(hqlStr);
+			query.setString(1, regionCode);
+			if (queryMap != null && queryMap.size() > 0) {
+				int index = 2;
+				if (queryMap.containsKey("aApprovalDate")) {
+					query.setString(index, "%" + queryMap.get("aApprovalDate") + "%");
+					index++;
+				}
+				if(queryMap.containsKey("mDataRight")){
+	                query.setString(index,queryMap.get("mDataRight")+"%");
+	            }
+			}
+			ResultSet rs = query.executeQuery();
+	        List arr = new LinkedList<>();
+			while (rs.next()) {
+				Rebates reb=new Rebates();
+				reb.setmOrgCode(rs.getString("mOrgCode"));
+				reb.setmMerchantCode(rs.getString("mMerchantCode"));
+				reb.setmCompanyOwn(rs.getString("mCompanyOwn"));
+				reb.setaProductType(rs.getString("aProductType"));
+				reb.setaApprovalMountTotal(rs.getString("aApprovalMountTotal"));
+				arr.add(reb);
+			}
+			if (arr != null && arr.size() > 0) {
+				return arr;
+			} else {
+				return null;
+			}
+		} catch (HibernateException e) {
+			throw new ServicesException(e.toString());
+
+		} finally {
+			this.releaseSession(session);
+		}
+	}
+
+	@Override
+	public ApplyPay getApplyPay(String applyId) throws ServicesException {
+		Session session = this.getSession();
+		try {
+			String fromClause = "from com.eric.java.ericzone.object.ApplyPay as applyPay where applyPay.aApplySeq = ? order by applyPay.aId ";
+			Query query = session.createQuery(fromClause);
+			query.setString(0, applyId);
+			List list = query.list();
+			if (list != null && list.size() > 0) {
+				return (ApplyPay) list.get(0);
+			} else {
+				return null;
+			}
+		} catch (HibernateException e) {
+			throw new ServicesException(e.toString());
+		} finally {
+			this.releaseSession(session);
+		}
+	}
+
+	@Override
+	public List getRegionApplyPayByQuery(Map<String, String> queryMap, String regionCode) throws ServicesException {
+		Session session = this.getSession();
+		try {
+			String hqlStr = "from com.eric.java.ericzone.object.ApplyPay as applyPay  where applyPay.mRegionCode = ? ";
+			if (queryMap != null && queryMap.size() > 0) {
+				if (queryMap.containsKey("aApplyCustomerName"))
+					hqlStr += " and applyPay.aApplyCustomerName = ? ";
+				if (queryMap.containsKey("aApplyDate"))
+					hqlStr += " and applyPay.aApplyDate like ? ";
+				if (queryMap.containsKey("mCompanyOwn"))
+					hqlStr += " and applyPay.mCompanyOwn =  ?";
+				if (queryMap.containsKey("aApplyPayStatus"))
+					hqlStr += " and applyPay.aApplyPayStatus =  ?";
+				if (queryMap.containsKey("aApplyTel"))
+					hqlStr += " and applyPay.aApplyTel =  ?";
+				if (queryMap.containsKey("mOrgCode"))
+					hqlStr += " and applyPay.mOrgCode =  ?";
+				if (queryMap.containsKey("mDataRight")) {
+					hqlStr += " and applyPay.mOrgCode in( ";
+					hqlStr += " select a.mOrgCode ";
+					hqlStr += " from com.eric.java.ericzone.object.MOrg as a ";
+					hqlStr += " where a.mDataRight like ? ";
+					hqlStr += " ) ";
+				}
+				if (queryMap.containsKey("mMerchantCode")) hqlStr += " and applyPay.mMerchantCode IN (:mCodes)";//建议放在hql语句查询条件末尾
+			}
+			hqlStr += " order by applyPay.aApplyDate desc ";
+			Query query = session.createQuery(hqlStr);
+			query.setString(0, regionCode);
+			if (queryMap != null && queryMap.size() > 0) {
+				if (queryMap.containsKey("pageSize")) {
+					query.setMaxResults(Integer.valueOf(queryMap.get("pageSize")));
+					query.setFirstResult(
+							Integer.valueOf(queryMap.get("pageSize")) * Integer.valueOf(queryMap.get("page"))
+									- Integer.valueOf(queryMap.get("pageSize")));
+				}
+			}
+			if (queryMap != null && queryMap.size() > 0) {
+				int index = 1;
+				if (queryMap.containsKey("aApplyCustomerName")) {
+					query.setString(index, queryMap.get("aApplyCustomerName"));
+					index++;
+				}
+				if (queryMap.containsKey("aApplyDate")) {
+					query.setString(index, "%" + queryMap.get("aApplyDate") + "%");
+					index++;
+				}
+				if (queryMap.containsKey("mCompanyOwn")) {
+					query.setString(index, queryMap.get("mCompanyOwn"));
+					index++;
+				}
+				if (queryMap.containsKey("aApplyPayStatus")) {
+					query.setString(index, queryMap.get("aApplyPayStatus"));
+					index++;
+				}
+				if (queryMap.containsKey("aApplyTel")) {
+					query.setString(index, queryMap.get("aApplyTel"));
+					index++;
+				}
+				if (queryMap.containsKey("mMerchantCode")) {
+					query.setParameterList("mCodes", queryMap.get("mMerchantCode").split(","));
+				}
+				if (queryMap.containsKey("mOrgCode")) {
+					query.setString(index, queryMap.get("mOrgCode"));
+					index++;
+				}
+				if (queryMap.containsKey("mDataRight")) {
+					query.setString(index, queryMap.get("mDataRight") + "%");
+					index++;
+				}
+			}
+			List list = query.list();
+			if (list != null && list.size() > 0) {
+				return list;
+			} else {
+				return null;
+			}
+		} catch (HibernateException e) {
+			throw new ServicesException(e.toString());
+
+		} finally {
+			this.releaseSession(session);
+		}
+	}
+
+	@Override
+	public int getRegionApplyPaySizeByQuery(Map<String, String> queryMap, String regionCode) throws ServicesException {
+		Session session = this.getSession();
+		try {
+			String hqlStr = "select count(applyPay.aId) from com.eric.java.ericzone.object.ApplyPay as applyPay  where applyPay.mRegionCode = ? ";
+			if (queryMap != null && queryMap.size() > 0) {
+				if (queryMap.containsKey("aApplyCustomerName"))
+					hqlStr += " and applyPay.aApplyCustomerName = ? ";
+				if (queryMap.containsKey("aApplyDate"))
+					hqlStr += " and applyPay.aApplyDate like ? ";
+				if (queryMap.containsKey("mCompanyOwn"))
+					hqlStr += " and applyPay.mCompanyOwn =  ?";
+				if (queryMap.containsKey("aApplyPayStatus"))
+					hqlStr += " and applyPay.aApplyPayStatus =  ?";
+				if (queryMap.containsKey("aApplyTel"))
+					hqlStr += " and applyPay.aApplyTel =  ?";
+				if (queryMap.containsKey("mOrgCode"))
+					hqlStr += " and applyPay.mOrgCode =  ?";
+				if (queryMap.containsKey("mDataRight")) {
+					hqlStr += " and applyPay.mOrgCode in( ";
+					hqlStr += " select a.mOrgCode ";
+					hqlStr += " from com.eric.java.ericzone.object.MOrg as a ";
+					hqlStr += " where a.mDataRight like ? ";
+					hqlStr += " ) ";
+				}
+				if (queryMap.containsKey("mMerchantCode")) hqlStr += " and applyPay.mMerchantCode IN (:mCodes)";//建议放在hql语句查询条件末尾
+			}
+			// hqlStr += " order by applyPay.aApplyDate desc ";
+			Query query = session.createQuery(hqlStr);
+			query.setString(0, regionCode);
+			if (queryMap != null && queryMap.size() > 0) {
+				int index = 1;
+				if (queryMap.containsKey("aApplyCustomerName")) {
+					query.setString(index, queryMap.get("aApplyCustomerName"));
+					index++;
+				}
+				if (queryMap.containsKey("aApplyDate")) {
+					query.setString(index, "%" + queryMap.get("aApplyDate") + "%");
+					index++;
+				}
+				if (queryMap.containsKey("mCompanyOwn")) {
+					query.setString(index, queryMap.get("mCompanyOwn"));
+					index++;
+				}
+				if (queryMap.containsKey("aApplyPayStatus")) {
+					query.setString(index, queryMap.get("aApplyPayStatus"));
+					index++;
+				}
+				if (queryMap.containsKey("aApplyTel")) {
+					query.setString(index, queryMap.get("aApplyTel"));
+					index++;
+				}
+				if (queryMap.containsKey("mMerchantCode")) {
+					query.setParameterList("mCodes", queryMap.get("mMerchantCode").split(","));
+				}
+				if (queryMap.containsKey("mOrgCode")) {
+					query.setString(index, queryMap.get("mOrgCode"));
+					index++;
+				}
+				if (queryMap.containsKey("mDataRight")) {
+					query.setString(index, queryMap.get("mDataRight") + "%");
+					index++;
+				}
+			}
+			List list = query.list();
+			int count = 0;
+			if (list != null && list.size() > 0) {
+				count = (Integer) list.get(0);
+				return count;
+			} else {
+				return 0;
+			}
+		} catch (HibernateException e) {
+			throw new ServicesException(e.toString());
+
+		} finally {
+			this.releaseSession(session);
+		}
+	}
+
+	@Override
+	public ApplayTotal getApplyPayTotal(Map<String, String> queryMap, String regionCode,String mOrgCode,
+			String aProductType)
+			throws ServicesException {
+		// TODO Auto-generated method stub
+		Session session=this.getSession();
+		try {
+			String hqlStr = "select sum(cast(replace(applyPay.aApprovalPay,',','') AS DECIMAL(10,2))) as aApprovalPayTotal "
+					+ "from trip_apply as apply INNER JOIN trip_apply_pay as applyPay on apply.aCustomerId = applyPay.aApplyCustomerId "
+					+"where applyPay.aApplyPayStatus in ('3','5','6','8','9','15') and "
+					+ "applyPay.mRegionCode = ?";
+					 if(queryMap!=null && queryMap.size()>0){
+			               if(queryMap.containsKey("u_start_date") && !queryMap.containsKey("u_end_date")) hqlStr += " and apply.aApplyDate like ? ";
+			               if(!queryMap.containsKey("u_start_date") && queryMap.containsKey("u_end_date")) hqlStr += " and apply.aApplyDate like ? ";
+			               if(queryMap.containsKey("u_start_date") && queryMap.containsKey("u_end_date")) hqlStr += "and apply.aApplyDate >= ? and apply.aApplyDate <= ? ";
+			               if(mOrgCode!=null && mOrgCode.trim().length()>0){
+			            	   hqlStr += " and applyPay.mOrgCode = ? ";
+			               }
+			               if(aProductType!=null && aProductType.trim().length()>0){
+			            	   hqlStr += " and applyPay.aProductType = ? ";
+			               }
+					 }
+					hqlStr+="group by applyPay.mOrgCode,applyPay.aProductType";  
+                    PreparedStatement query = session.connection().prepareStatement(hqlStr);
+                    query.setString(1, regionCode);
+			        if(queryMap!=null && queryMap.size()>0){
+	        	    int index = 2 ;
+	                if(queryMap.containsKey("u_start_date") && !queryMap.containsKey("u_end_date")){
+	            	   query.setString(index, "%" + queryMap.get("u_start_date") + "%");
+	            	   index++;
+	                }
+	               if(!queryMap.containsKey("u_start_date") && queryMap.containsKey("u_end_date")){
+	            	   query.setString(index, "%" + queryMap.get("u_end_date") + "%");
+	            	   index++;
+	               }
+	               if(queryMap.containsKey("u_start_date") && queryMap.containsKey("u_end_date")){
+                       query.setString(index, queryMap.get("u_start_date")+" 00:00:00");
+	                   query.setString(index+1, queryMap.get("u_end_date")+" 23:59:59");
+	            	   index = index +1;
+	            	   index++;
+	               } 
+	               if(mOrgCode!=null && mOrgCode.trim().length()>0){
+	            	   query.setString(index, mOrgCode);
+	            	   index++;
+	               }
+	               if(aProductType!=null && aProductType.trim().length()>0){
+	            	   query.setString(index, aProductType);
+	               }
+			  }
+					ResultSet rs = query.executeQuery();
+				    List list = new LinkedList<>();
+				    while(rs.next()){
+				    	   ApplayTotal a = new ApplayTotal();
+				   		   a.setaApprovalPayTotal(rs.getString("aApprovalPayTotal"));
+				   		   list.add(a);
+				    }
+				    if (list != null && list.size() > 0) {
+						return (ApplayTotal) list.get(0);
+					} else {
+						return null;
+					}
+				} catch (HibernateException e) {
+					throw new ServicesException(e.toString());
+				
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+						throw new ServicesException(e.toString());
+					}finally{
+						this.releaseSession(session);
+					}
+				}
+
+	@Override
+	public int getMonthApplyCount(Map<String, String> queryMap, String regionCode) throws ServicesException {
+		Session session = this.getSession();
+		try {
+			String hqlStr = "select count(apply.aCustomerName) from com.eric.java.ericzone.object.Apply as apply  where apply.mRegionCode = ?";
+			if(queryMap != null && queryMap.size()>0){
+				if(queryMap.containsKey("aApplyDate")) hqlStr += " and apply.aApplyDate like  ?";
+				if(queryMap.containsKey("aStatus")) hqlStr += " and apply.aStatus =  ?";
+				if (queryMap.containsKey("mDataRight")) {
+					hqlStr += " and apply.mOrgCode in( ";
+					hqlStr += " select a.mOrgCode ";
+					hqlStr += " from com.eric.java.ericzone.object.MOrg as a ";
+					hqlStr += " where a.mDataRight like ? ";
+					hqlStr += " ) ";
+				}
+			}
+			Query query = session.createQuery(hqlStr);
+			query.setString(0, regionCode);
+			if(queryMap != null && queryMap.size()>0){
+				int index = 1;
+				if(queryMap.containsKey("aApplyDate")){
+					query.setString(index,queryMap.get("aApplyDate")+"%");
+					index ++;
+				}
+				if(queryMap.containsKey("aStatus")){
+					query.setString(index, queryMap.get("aStatus"));
+					index ++;
+				}
+				if(queryMap.containsKey("mDataRight")){
+					query.setString(index,queryMap.get("mDataRight")+ "%");
+				}
+			}
+			//用list接收查询结果
+			List list = query.list();
+			if(list != null && list.size()>0){
+				int result = (int) list.get(0);
+				return result;
+			}else{
+				return 0;
+			}
+		} catch (HibernateException e) {
+			throw new ServicesException(e.toString());
+		}finally {
+			this.releaseSession(session);
+		}
+		
+		
+	}
+
+
+	@Override
+	public ApplyPay getMonthMoneySum(Map<String, String> queryMap, String regionCode) throws ServicesException {
+		Session session = this.getSession();
+		try {
+			String hqlStr = "select sum(applyPay.aApplyMount) as aApplyMount,sum(applyPay.aApprovalMount) as aApprovalMount,sum(cast(replace(applyPay.aApprovalPay,',','') AS DECIMAL (10, 2))) as aApprovalPay from trip_apply_pay as applyPay where applyPay.mRegionCode = ?";
+			if(queryMap != null && queryMap.size()>0){
+				if(queryMap.containsKey("aApplyDate")) hqlStr += "and applyPay.aApplyDate like ?";
+				if (queryMap.containsKey("mDataRight")) {
+					hqlStr += " and applyPay.mOrgCode in( ";
+					hqlStr += " select a.mOrgCode ";
+					hqlStr += " from trip_org as a ";
+					hqlStr += " where a.mDataRight like ? ";
+					hqlStr += " ) ";
+				}
+			}
+			PreparedStatement query = session.connection().prepareStatement(hqlStr);
+			query.setString(1, regionCode);
+			if(queryMap != null && queryMap.size()>0){
+				int index = 2;
+				if(queryMap.containsKey("aApplyDate")){
+					query.setString(index, "%-"+queryMap.get("aApplyDate")+"-%");
+					index ++;
+				}
+				if(queryMap.containsKey("mDataRight")){
+					query.setString(index,queryMap.get("mDataRight")+ "%");
+				}
+			}
+			
+			
+			ResultSet rs = query.executeQuery();
+		    List list = new LinkedList<>();
+		    while(rs.next()){
+		    	   ApplyPay a = new ApplyPay();
+		    	   if(rs.getString("aApplyMount") != null && rs.getString("aApplyMount").length()>0){
+		    		   a.setaApplyMount(rs.getString("aApplyMount"));		    		   
+		    	   }else{
+		    		   a.setaApplyMount("0");
+		    	   }
+		    	   if(rs.getString("aApprovalMount") != null && rs.getString("aApprovalMount").length()>0){		    		 		    		   
+		    		   a.setaApprovalMount(rs.getString("aApprovalMount"));
+		    	   }else{
+		    		   a.setaApprovalMount("0");
+		    	   }
+		    	   if(rs.getString("aApprovalPay") != null && rs.getString("aApprovalPay").length()>0){		    		   		    		   
+		    		   a.setaApprovalPay(rs.getString("aApprovalPay"));
+		    	   }else{
+		    		   a.setaApprovalPay("0");
+		    	   }
+		   		   list.add(a);
+		    }
+		    if (list != null && list.size() > 0) {
+				return (ApplyPay) list.get(0);
+			} else {
+				return null;
+			}
+		} catch (HibernateException e) {
+			throw new ServicesException(e.toString());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			this.releaseSession(session);
+		}
+		return null;
+	}
+
+	@Override
+	public List getMerchantApplyCount(Map<String, String> queryMap, String regionCode) throws ServicesException {
+		Session session = this.getSession();
+		
+		try {
+			String hqlStr = "select applyPay.mMerchantName as merchantName,"
+					+ "count(applyPay.aId) as number,count(if(applyPay.aApplyStatus = 3,1,null)) as passNumber,"
+					+ "sum(applyPay.aApplyMount) as applyMount,sum(applyPay.aApprovalMount) as passMount,"
+					+ "sum(cast(replace(applyPay.aApprovalPay,',','') as DECIMAL (10, 2))) as passPay "
+					+ "from trip_apply_pay as applyPay "
+					+ "where applyPay.mRegionCode = ?";
+			if (queryMap.containsKey("mDataRight")) {
+				hqlStr += " and applyPay.mOrgCode in( ";
+				hqlStr += " select a.mOrgCode ";
+				hqlStr += " from trip_org as a ";
+				hqlStr += " where a.mDataRight like ? ";
+				hqlStr += " ) ";
+			}
+			hqlStr += "group by applyPay.mMerchantName";
+			
+			PreparedStatement query = session.connection().prepareStatement(hqlStr);
+			query.setString(1, regionCode);
+			
+			if(queryMap!=null&& queryMap.size()>0){
+				if(queryMap.containsKey("mDataRight")){
+					int index = 2;
+					query.setString(index, queryMap.get("mDataRight")+"%");
+				}
+			}
+			
+			ResultSet rs = query.executeQuery();
+			
+			//借助ResultSetMetaData将resultset转化为list
+			List list = new ArrayList();
+			ResultSetMetaData md = (ResultSetMetaData) rs.getMetaData();
+			int columnCount = md.getColumnCount();
+			while(rs.next()){
+				Map rowData = new HashMap();
+				for(int i=1;i<=columnCount;i++){
+					rowData.put(md.getColumnName(i), rs.getObject(i));
+				}
+				list.add(rowData);
+			}
+			
+			if(list != null && list.size()>0){
+				return list;
+			}else{
+				return null;
+			}
+			
+			
+		} catch (HibernateException e) {
+			throw new ServicesException(e.toString());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			this.releaseSession(session);
+		}
+		return null;
+	}
+
+	@Override
+	public List getMerchantMoneySum(Map<String, String> queryMap, String regionCode) throws ServicesException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
+}

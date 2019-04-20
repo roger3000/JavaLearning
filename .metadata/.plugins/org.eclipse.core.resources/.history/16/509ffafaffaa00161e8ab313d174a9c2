@@ -1,0 +1,67 @@
+package com.eric.java.ericzone.action.mgt;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.eric.java.basecontainer.basetool.PaginationFunc;
+import com.eric.java.basecontainer.baseweb.EricAction;
+
+public class MgtLogQueryAction extends EricAction {
+private static final long serialVersionUID = -8824161696192462563L;
+	
+	private List smsList = new ArrayList();
+	
+	private String u_mobile ;
+	
+	private String u_type ;
+	
+	private String u_status ;
+	
+	private int page = -1;
+	
+	private int maxRowCount = -1;
+	
+	private int maxPage = -1;
+	
+	private int pageSize = 15 ;
+	
+	private String u_page ;
+	
+	
+	public String execute() throws Exception {
+		
+		if (this.page==-1)page = 1;
+		
+		Map<String,String> queryMap = new HashMap<String,String>();
+		if(u_mobile!=null && u_mobile.trim().length()>0){
+			queryMap.put("mSendTel", u_mobile);
+		}
+		if(u_type!=null && u_type.trim().length()>0){
+			queryMap.put("mType", u_type);
+		}
+		if(u_status!=null && u_status.trim().length()>0){
+			queryMap.put("mStatus", u_status);
+		}
+		
+		int smsListSize = this.getSmsAware().getRegionMSmsListSizeByQueryMap(queryMap, this.getManage().getmRegionCode());
+		
+        //分页
+		this.u_page = "true";
+		if(u_page!=null && u_page.trim().length()>0){
+			queryMap.put("pageSize", String.valueOf(pageSize));
+			queryMap.put("page", String.valueOf(page));
+		}
+		
+		smsList = this.getSmsAware().getRegionMSmsListByQueryMap(queryMap, this.getManage().getmRegionCode());
+		
+		this.maxRowCount= smsListSize;// 得到最大行数
+        this.maxPage=PaginationFunc.getMaxPage(maxRowCount, pageSize); // 得到最大分页数
+        
+		return INPUT;
+	}
+	
+
+	
+}

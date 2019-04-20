@@ -1,0 +1,1075 @@
+<!DOCTYPE xwork PUBLIC
+        "-//OpenSymphony Group//XWork 1.1.2//EN"
+        "http://www.opensymphony.com/xwork/xwork-1.1.2.dtd">
+<xwork>
+
+	<package name="mgt" extends="default" namespace="/mgt">
+	    
+	    <!--    *******************************重构模块*******************************  -->
+
+	    <!--首页模块  -->
+        <action name="correctData" class="com.eric.java.ericzone.action.mgt.MgtCorrectDataAction">
+                <result name="input" type="redirect">/mgt/index.xhtml</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+	    <!--首页模块  -->
+        <action name="index" class="com.eric.java.ericzone.action.mgt.MgtIndexAction">
+                <result name="input">/WEB-INF/mgt/mgtindex.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <action name="indexdata" class="com.eric.java.ericzone.action.mgt.MgtIndexDataAction">
+                 <result type="json"/>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <!--登录模块  -->
+        <action name="login" class="com.eric.java.ericzone.action.mgt.MgtLoginAction">
+                <result name="input">/WEB-INF/mgt/mgtlogin.jsp</result>
+        </action>
+
+        <action name="loginSave" class="com.eric.java.ericzone.action.mgt.MgtLoginSaveAction">
+                <result type="json"/>
+        </action>
+        
+        <!--注销模块  -->
+        <action name="logout" class="com.eric.java.ericzone.action.mgt.MgtLogoutAction">
+                <result name="input" type="redirect">/mgt/login.xhtml</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+
+        <!-- 客户查询 --> 
+        <action name="userquery" class="com.eric.java.ericzone.action.mgt.MgtUserQueryAction">
+                <result name="input">/WEB-INF/mgt/mgtuser.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <!-- 客户信息保全协议查询、生成 --> 
+        <action name="useragreemsgquery" class="com.eric.java.ericzone.action.mgt.MgtUserAgreeMsgQueryAction">
+                <result name="success" type="json"/>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        <action name="useragreemsgcreate" class="com.eric.java.ericzone.action.mgt.MgtUserAgreeMsgCreateAction">
+                <result name="success" type="json"/>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <!-- 客户分期信息保全协议查询、生成 --> 
+        <action name="userapplyagreemsgquery" class="com.eric.java.ericzone.action.mgt.MgtUserApplyAgreeMsgQueryAction">
+                <result name="success" type="json"/>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        <action name="userapplyagreemsgcreate" class="com.eric.java.ericzone.action.mgt.MgtUserApplyAgreeMsgCreateAction">
+                <result name="success" type="json"/>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <!-- 客户明细查询 -->
+         <action name="userdetail" class="com.eric.java.ericzone.action.mgt.MgtUserDetailAction">
+                <result name="input">/WEB-INF/mgt/mgtuserdetail.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <!-- 客户修改转发 -->
+         <action name="userupdate" class="com.eric.java.ericzone.action.mgt.MgtUserDetailAction">
+                <result name="input">/WEB-INF/mgt/mgtuserupdate.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+		<!-- 客户资料修改 -->
+		<action name="relaJsonSave" class="com.eric.java.ericzone.action.mgt.MgtRelaSaveAction">
+			<result type="json" />
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<!-- 客户删除 -->
+		<action name="userdelete" class="com.eric.java.ericzone.action.mgt.MgtUserDeleteAction">
+			<result name="success" type="json"/>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<!-- 客户证明材料上传 -->
+		<action name="signJsonSave" class="com.eric.java.ericzone.action.mgt.MgtSignSaveAction">
+			<result type="json" />
+			<interceptor-ref name="ManageFileUpload" />
+		</action>
+		
+		 <!-- 客户证明材料删除 -->       
+		<action name="signJsonDelete" class="com.eric.java.ericzone.action.mgt.MgtSignDeleteAction">
+			<result type="json" />
+			<interceptor-ref name="ManageFileUpload" />
+		</action>                                        
+        
+		<!-- 图片展示 -->
+		<action name="mgtimg" class="com.eric.java.ericzone.action.mgt.MgtImgAction">
+			<result name="success" type="stream">
+                <param name="contentType">image/jpeg</param>
+                <param name="inputName">imageStream</param>
+                <param name="bufferSize">4096</param>
+            </result>
+            <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <!-- excel导出 -->
+		<action name="exportapply" class="com.eric.java.ericzone.action.mgt.MgtApplyExportAction">
+			<result name="success" type="stream">
+                <param name="contentType">application/vnd.ms-excel</param>
+                <param name="inputName">imageStream</param>
+                <param name="contentDisposition">attachment;filename="${filename}"</param>
+                <param name="bufferSize">409600</param>
+            </result>
+            <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <!-- 逾期客户excel导出 -->
+		<action name="exportbillItem" class="com.eric.java.ericzone.action.mgt.MgtBillExportAction">
+			<result name="success" type="stream">
+                <param name="contentType">application/vnd.ms-excel</param>
+                <param name="inputName">imageStream</param>
+                <param name="contentDisposition">attachment;filename="${filename}"</param>
+                <param name="bufferSize">409600</param>
+            </result>
+            <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <!-- 逾期客户excel导出 -->
+		<action name="exportbillItems" class="com.eric.java.ericzone.action.mgt.MgtBillItemExportAction">
+			<result name="success" type="stream">
+                <param name="contentType">application/vnd.ms-excel</param>
+                <param name="inputName">imageStream</param>
+                <param name="contentDisposition">attachment;filename="${filename}"</param>
+                <param name="bufferSize">409600</param>
+            </result>
+            <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+		<!-- 审批定制化导出 -->
+		<action name="appyexport" class="com.eric.java.ericzone.action.mgt.MgtApplyCustomerExportAction">
+			<result name="input">/WEB-INF/mgt/mgtapplyexport.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>		
+		
+		<action name="appyexportsave" class="com.eric.java.ericzone.action.mgt.MgtApplyCustomerExportSaveAction">
+			<result name="success" type="stream">
+                <param name="contentType">application/vnd.ms-excel</param>
+                <param name="inputName">imageStream</param>
+                <param name="contentDisposition">attachment;filename="${filename}"</param>
+                <param name="bufferSize">4096000</param>
+            </result>
+            <interceptor-ref name="ManageStackWithSecurity" />
+        </action>        
+        <!-- 进件统计导出 -->
+        <action name="exportapplystatistics" class="com.eric.java.ericzone.action.mgt.MgtApplyStatisticsAction">
+			<result name="success" type="stream">
+                <param name="contentType">application/vnd.ms-excel</param>
+                <param name="inputName">imageStream</param>
+                <param name="contentDisposition">attachment;filename="${filename}"</param>
+                <param name="bufferSize">409600</param>
+            </result>
+            <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+		<!-- 短信查询 -->
+		<action name="smsquery" class="com.eric.java.ericzone.action.mgt.MgtSmsQueryAction">
+			<result name="input">/WEB-INF/mgt/mgtsms.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+			
+
+		<!-- 短信重发 -->
+		<action name="dosms" class="com.eric.java.ericzone.action.mgt.MgtDoSmsAction">
+			<result type="json" />
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<!-- 申请查询 --> 
+        <action name="applyquery" class="com.eric.java.ericzone.action.mgt.MgtApplyQueryAction">
+                <result name="input">/WEB-INF/mgt/mgtapply.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+         <action name="applydetail" class="com.eric.java.ericzone.action.mgt.MgtApplyDetailAction">
+                <result name="input">/WEB-INF/mgt/mgtapplydetail.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <action name="applycancel" class="com.eric.java.ericzone.action.mgt.MgtApplyCancelAction">
+                <result name="input" type="redirect">/mgt/applyquery.xhtml?u_page=true&amp;u_dataright=true</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+		<action name="applypreplan" class="com.eric.java.ericzone.action.mgt.MgtApplyPreBillPlanAction">
+			<result name="input">/WEB-INF/mgt/mgtbillitemplan.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<action name="applyredobill" class="com.eric.java.ericzone.action.mgt.MgtApplyReDoBillAction">
+				<result name="success" type="json"/>
+                <interceptor-ref name="ManageStackWithSecurity" />
+		</action>		                 
+        
+        <!-- 预申请 --> 
+        <action name="preapply" class="com.eric.java.ericzone.action.mgt.MgtCustomerInputAction">
+                <result name="input">/WEB-INF/mgt/mgtinput.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>                                 
+
+        <action name="preapplysave" class="com.eric.java.ericzone.action.mgt.MgtCustomerInputSaveAction">
+                <result name="success" type="json"/>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <!-- 申请修改 -->
+        <action name="applyupdate" class="com.eric.java.ericzone.action.mgt.MgtCustomerInputUpdateAction">
+                <result name="input">/WEB-INF/mgt/mgtinputupdate.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <action name="applyupdatesave" class="com.eric.java.ericzone.action.mgt.MgtCustomerInputUpdateSaveAction">
+                <result name="success" type="json"/>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <action name="applymgt" class="com.eric.java.ericzone.action.mgt.MgtApplyMgtAction">
+                <result name="success" type="json"/>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <action name="applydelete" class="com.eric.java.ericzone.action.mgt.MgtApplyDeleteAction">
+                <result name="success" type="json"/>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>        
+         
+        <!--审批模块  -->
+        <action name="approval" class="com.eric.java.ericzone.action.mgt.MgtApprovalAction">
+        		<result name="success" type="json"/>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <!--初审模块  -->
+        <action name="japproval" class="com.eric.java.ericzone.action.mgt.MgtJApprovalAction">
+        		<result name="success" type="json"/>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>        
+        
+        <!--账单短信  -->
+        <action name="billsms" class="com.eric.java.ericzone.action.mgt.MgtBillSmsQueryAction">
+                <result name="input">/WEB-INF/mgt/mgtbillsms.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <action name="billsmsdel" class="com.eric.java.ericzone.action.mgt.MgtBillSmsDeleteAction">
+                <result type="json" />
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>        
+        
+        <!-- 生成账单短信 -->	
+        <action name="billsmsbuild" class="com.eric.java.ericzone.action.mgt.MgtBuildBillSmsAction">
+                <result type="json" />
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <!-- 生成还款短信 -->	
+        <action name="billpaysmsbuild" class="com.eric.java.ericzone.action.mgt.MgtBuildBillPaySmsAction">
+                <result type="json" />
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>        
+        
+        <!-- 生成逾期账单短信 -->
+        <action name="billowesmsbuild" class="com.eric.java.ericzone.action.mgt.MgtBuildBillOweSmsAction">
+                <result type="json" />
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>        
+		
+		<!-- 发送账单短信 -->	
+		<action name="doBillSms" class="com.eric.java.ericzone.action.mgt.MgtBillSmsSendAction">
+			<result type="json" />
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<!-- 重置账单短信 -->	
+		<action name="initBillSms" class="com.eric.java.ericzone.action.mgt.MgtBillSmsInitAction">
+			<result type="json" />
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>		        
+        
+        <!--快速销账并生成账单短信  -->
+        <action name="issuebillItem" class="com.eric.java.ericzone.action.mgt.MgtIssueBillItemAction">
+                <result name="input" type="redirect">/mgt/billsms.xhtml?u_page=true</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <!-- 字典管理 -->
+		<action name="dimquery" class="com.eric.java.ericzone.action.mgt.MgtDimQueryAction">
+			<result name="input">/WEB-INF/mgt/mgtdim.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>        
+        							
+		<action name="dimreflesh" class="com.eric.java.ericzone.action.mgt.MgtDimRefleshAction">
+			<result type="json" />
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+	    <!-- 账单重出 -->																			
+		<action name="doBill" class="com.eric.java.ericzone.action.mgt.MgtDoBillAction">
+			<result type="json" />
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+        <!-- 罚息计算 -->	
+        <action name="buildBillPenalty" class="com.eric.java.ericzone.action.mgt.MgtBuildBillPenaltyAction">
+                <result type="json" />
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action> 		
+		
+		<!-- 征信代查客户 -->
+        <action name="agentUser" class="com.eric.java.ericzone.action.mgt.MgtUserInputAction">
+                <result name="input">/WEB-INF/mgt/mgtagentuser.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <action name="agentUserSave" class="com.eric.java.ericzone.action.mgt.MgtAgentUserSaveAndCallAction">
+                <result name="success" type="json"/>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+         <action name="agentUserQuery" class="com.eric.java.ericzone.action.mgt.MgtAgentUserQueryAction">
+                <result name="input">/WEB-INF/mgt/mgtagentuserlist.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>                		
+		
+		<!-- 预审客户 -->
+        <action name="preUser" class="com.eric.java.ericzone.action.mgt.MgtUserInputAction">
+                <result name="input">/WEB-INF/mgt/mgtinputuser.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <action name="preUserSave" class="com.eric.java.ericzone.action.mgt.MgtUserInputSaveAction">
+                <result name="success" type="json"/>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <action name="userapproval" class="com.eric.java.ericzone.action.mgt.MgtUserApprovalAction">
+                <result name="input" type="redirect">/mgt/userquery.xhtml?prezone=1000&amp;u_issure=0</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+		<!-- 请款管理 -->	
+		<action name="applypayquery" class="com.eric.java.ericzone.action.mgt.MgtApplyPayQueryAction">
+			<result name="input">/WEB-INF/mgt/mgtapplypay.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<action name="applypaymgt" class="com.eric.java.ericzone.action.mgt.MgtApplyPayUpdateAction">
+			<result type="json" />
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<action name="applypayview" class="com.eric.java.ericzone.action.mgt.MgtPayMoneyViewAction">
+			<result name="input">/WEB-INF/mgt/mgtdopayview.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<action name="applypayexport" class="com.eric.java.ericzone.action.mgt.MgtApplyPayExportAction">
+			<result name="success" type="stream">
+                <param name="contentType">application/vnd.ms-excel;charset=UTF-8</param>
+                <param name="inputName">imageStream</param>
+                <param name="contentDisposition">attachment;filename="${filename}"</param>
+                <param name="bufferSize">409600</param>
+            </result>
+            <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <action name="applybuckleexport" class="com.eric.java.ericzone.action.mgt.MgtApplyBuckleExportAction">
+			<result name="success" type="stream">
+                <param name="contentType">application/vnd.ms-excel;charset=UTF-8</param>
+                <param name="inputName">imageStream</param>
+                <param name="contentDisposition">attachment;filename="${filename}"</param>
+                <param name="bufferSize">409600</param>
+            </result>
+            <interceptor-ref name="ManageStackWithSecurity" />
+        </action>                 		
+               	    
+	    <!--    *******************************未重构模块*******************************  -->
+        
+        <!-- 资金流水模块 -->
+        <action name="capitalList" class="com.eric.java.ericzone.action.mgt.MgtCapitalReqListAction">
+        		<result name="success">/WEB-INF/mgt/mgtcapital.jsp</result>
+                <result name="input">/WEB-INF/mgt/mgtcapital.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />        
+        </action>
+                       
+        <action name="capitalQuery" class="com.eric.java.ericzone.action.mgt.MgtCapitalReqQueryAction">
+        		<result name="success">/WEB-INF/mgt/mgtcapital.jsp</result>
+                <result name="input">/WEB-INF/mgt/mgtcapital.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />        
+        </action>
+        
+         <action name="capitalQueryView" class="com.eric.java.ericzone.action.mgt.MgtCapitalReqQueryAction">
+        		<result name="success">/WEB-INF/mgt/mgtcapitalview.jsp</result>
+                <result name="input">/WEB-INF/mgt/mgtcapitalview.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />        
+        </action>       
+                       
+        <action name="capitalDetail" class="com.eric.java.ericzone.action.mgt.MgtCapitalReqDetailAction">
+        		<result name="success">/WEB-INF/mgt/mgtcapitaldetail.jsp</result>
+                <result name="input">/WEB-INF/mgt/mgtcapitaldetail.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />        
+        </action>
+                       
+        <action name="capitalAdd" class="com.eric.java.ericzone.action.mgt.MgtCapitalReqAddAction">
+        		<result name="success" type="redirect">/mgt/capitalQuery.xhtml</result>
+                <result name="input">/WEB-INF/mgt/mgtcapitaladd.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />        
+        </action>
+
+        <action name="capitalAddSave" class="com.eric.java.ericzone.action.mgt.MgtCapitalReqAddSaveAction">
+                <result name="success" type="redirect">/mgt/capitalQuery.xhtml</result>
+                <result name="input">/WEB-INF/mgt/mgtcapitaladd.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />        
+        </action>
+                       
+        <action name="capitalUpdate" class="com.eric.java.ericzone.action.mgt.MgtCapitalReqUpdateAction">
+        		<result name="success" type="redirect">/mgt/capitalQuery.xhtml</result>
+                <result name="input">/WEB-INF/mgt/mgtcapitaldetail.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />        
+        </action>
+                       
+        <action name="capitalDelete" class="com.eric.java.ericzone.action.mgt.MgtCapitalReqDeleteAction">
+        		<result name="success" type="redirect">/mgt/capitalQuery.xhtml</result>
+                <result name="input">/WEB-INF/mgt/mgtcapital.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />        
+        </action>
+        
+        <!-- 取回密码 -->
+         <action name="initPwd" class="com.eric.java.ericzone.action.mgt.MgtInitPwdAction">
+                <result name="input">/WEB-INF/mgt/mgtinitpwd.jsp</result>
+        </action>
+        
+        <!-- 
+         <action name="initPwdSave" class="com.eric.java.ericzone.action.mgt.MgtInitPwdSaveAction">
+        		<result name="success">/WEB-INF/mgt/mgtinitpwd.jsp</result>
+                <result name="input">/WEB-INF/mgt/mgtinitpwd.jsp</result>
+        </action> 
+         -->             
+
+         <action name="initPwdSave" class="com.eric.java.ericzone.action.mgt.MgtInitPwdSaveAction">
+        		<result type="json" />
+        </action>
+        
+         <action name="updatePwd" class="com.eric.java.ericzone.action.mgt.MgtUpdatePwdAction">
+        		<result name="success">/WEB-INF/mgt/mgtpwd.jsp</result>
+                <result name="input">/WEB-INF/mgt/mgtpwd.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+
+         <action name="updatePwdSave" class="com.eric.java.ericzone.action.mgt.MgtUpdatePwdSaveAction">
+                <result name="success" type="json"/>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <action name="mgtsms" class="com.eric.java.ericzone.action.mgt.MgtJsonSmsSaveAction">
+            <result type="json" />
+        </action>        
+        
+        <!-- 蜜罐征信 -->
+         <action name="callMgReport" class="com.eric.java.ericzone.action.mgt.MgtMGReportCallAction">
+         		<result name="success" type="redirect">/mgt/applydetail.xhtml?u_applyId=${applyId}</result>
+                <result name="input" type="redirect">/mgt/applydetail.xhtml?u_applyId=${applyId}</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+         <action name="mgreportdetail" class="com.eric.java.ericzone.action.mgt.MgtMGReportDetailAction">
+         		<result name="success">/WEB-INF/mgt/mgtmgreport.jsp</result>
+                <result name="input">/WEB-INF/mgt/mgtmgreport.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <!-- 蜜罐征信预审 -->
+         <action name="callPreMgReport" class="com.eric.java.ericzone.action.mgt.MgtMGReportCallAction">
+         		<result name="success" type="redirect">/mgt/userdetail.xhtml?u_customerId=${aCustomerId}</result>
+                <result name="input" type="redirect">/mgt/userdetail.xhtml?u_customerId=${aCustomerId}</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>                         
+                
+        <!-- 铜盾征信 -->
+         <action name="tdreport" class="com.eric.java.ericzone.action.mgt.MgtTDReportAction">
+                <result name="input">/WEB-INF/mgt/mgtreport.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>                             
+
+         <action name="callTdReport" class="com.eric.java.ericzone.action.mgt.MgtTDReportCallAction">
+         		<result name="success" type="redirect">/mgt/applydetail.xhtml?u_applyId=${applyId}</result>
+                <result name="input" type="redirect">/mgt/applydetail.xhtml?u_applyId=${applyId}</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+         <action name="tdreportdetail" class="com.eric.java.ericzone.action.mgt.MgtTDReportDetailAction">
+         		<result name="success">/WEB-INF/mgt/mgtreport.jsp</result>
+                <result name="input">/WEB-INF/mgt/mgtreport.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action> 
+        
+        <!-- 铜盾征信预审 -->
+         <action name="callPreTdReport" class="com.eric.java.ericzone.action.mgt.MgtTDReportCallAction">
+         		<result name="success" type="redirect">/mgt/userdetail.xhtml?u_customerId=${aCustomerId}</result>
+                <result name="input" type="redirect">/mgt/userdetail.xhtml?u_customerId=${aCustomerId}</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>        
+        
+        
+        <!-- 敏识征信 -->
+         <action name="callMsReport" class="com.eric.java.ericzone.action.mgt.MgtMSReportCallAction">
+         		<result name="success" type="redirect">/mgt/applydetail.xhtml?u_applyId=${applyId}</result>
+                <result name="input" type="redirect">/mgt/applydetail.xhtml?u_applyId=${applyId}</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action> 
+        
+         <action name="callMsCardReport" class="com.eric.java.ericzone.action.mgt.MgtMSCardReportCallAction">
+         		<result name="success" type="redirect">/mgt/applydetail.xhtml?u_applyId=${applyId}</result>
+                <result name="input" type="redirect">/mgt/applydetail.xhtml?u_applyId=${applyId}</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action> 
+        
+         <action name="callMsGraduateReport" class="com.eric.java.ericzone.action.mgt.MgtMSGraduateReportCallAction">
+         		<result name="success" type="redirect">/mgt/applydetail.xhtml?u_applyId=${applyId}</result>
+                <result name="input" type="redirect">/mgt/applydetail.xhtml?u_applyId=${applyId}</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>   
+        
+         <action name="callMsSchoolReport" class="com.eric.java.ericzone.action.mgt.MgtMSSchoolReportCallAction">
+         		<result name="success" type="redirect">/mgt/applydetail.xhtml?u_applyId=${applyId}</result>
+                <result name="input" type="redirect">/mgt/applydetail.xhtml?u_applyId=${applyId}</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action> 
+        
+        <!-- 敏识征信预审 -->
+         <action name="callPreMsReport" class="com.eric.java.ericzone.action.mgt.MgtMSReportCallAction">
+         		<result name="success" type="redirect">/mgt/userdetail.xhtml?u_customerId=${aCustomerId}</result>
+                <result name="input" type="redirect">/mgt/userdetail.xhtml?u_customerId=${aCustomerId}</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action> 
+        
+         <action name="callPreMsCardReport" class="com.eric.java.ericzone.action.mgt.MgtMSCardReportCallAction">
+         		<result name="success" type="redirect">/mgt/userdetail.xhtml?u_customerId=${aCustomerId}</result>
+                <result name="input" type="redirect">/mgt/userdetail.xhtml?u_customerId=${aCustomerId}</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action> 
+        
+         <action name="callPreMsGraduateReport" class="com.eric.java.ericzone.action.mgt.MgtMSGraduateReportCallAction">
+         		<result name="success" type="redirect">/mgt/userdetail.xhtml?u_customerId=${aCustomerId}</result>
+                <result name="input" type="redirect">/mgt/userdetail.xhtml?u_customerId=${aCustomerId}</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>   
+        
+         <action name="callPreMsSchoolReport" class="com.eric.java.ericzone.action.mgt.MgtMSSchoolReportCallAction">
+         		<result name="success" type="redirect">/mgt/userdetail.xhtml?u_customerId=${aCustomerId}</result>
+                <result name="input" type="redirect">/mgt/userdetail.xhtml?u_customerId=${aCustomerId}</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>  
+        
+        <!-- 前海征信 -->
+         <action name="callPreQhReport" class="com.eric.java.ericzone.action.mgt.MgtQHReportCallAction">
+         		<result name="success" type="redirect">/mgt/applydetail.xhtml?u_applyId=${applyId}</result>
+                <result name="input" type="redirect">/mgt/applydetail.xhtml?u_applyId=${applyId}</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>  
+        
+        <action name="callPreYSQhReport" class="com.eric.java.ericzone.action.mgt.MgtQHReportCallAction">
+         		<result name="success" type="redirect">/mgt/userdetail.xhtml?u_customerId=${aCustomerId}</result>
+                <result name="input" type="redirect">/mgt/userdetail.xhtml?u_customerId=${aCustomerId}</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action> 
+        
+        <action name="callQhYSCheatReport" class="com.eric.java.ericzone.action.mgt.MgtQHCheatReportCallAction">
+         		<result name="success" type="redirect">/mgt/userdetail.xhtml?u_customerId=${aCustomerId}</result>
+                <result name="input" type="redirect">/mgt/userdetail.xhtml?u_customerId=${aCustomerId}</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <action name="callQhYSphoneReport" class="com.eric.java.ericzone.action.mgt.MgtQHphoneReportCallAction">
+         		<result name="success" type="redirect">/mgt/userdetail.xhtml?u_customerId=${aCustomerId}</result>
+                <result name="input" type="redirect">/mgt/userdetail.xhtml?u_customerId=${aCustomerId}</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        <action name="qhreportdetail" class="com.eric.java.ericzone.action.mgt.MgtQHReportDetailAction">
+         		<result name="success">/WEB-INF/mgt/mgtqhreport.jsp</result>
+                <result name="input">/WEB-INF/mgt/mgtqhreport.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>  
+        
+        <action name="callQhCheatReport" class="com.eric.java.ericzone.action.mgt.MgtQHCheatReportCallAction">
+         		<result name="success" type="redirect">/mgt/applydetail.xhtml?u_applyId=${applyId}</result>
+                <result name="input" type="redirect">/mgt/applydetail.xhtml?u_applyId=${applyId}</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action> 
+        
+        <action name="callQhphoneReport" class="com.eric.java.ericzone.action.mgt.MgtQHphoneReportCallAction">
+         		<result name="success" type="redirect">/mgt/applydetail.xhtml?u_applyId=${applyId}</result>
+                <result name="input" type="redirect">/mgt/applydetail.xhtml?u_applyId=${applyId}</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>         
+		
+		<!-- 菜单管理 -->
+		<action name="menuquery" class="com.eric.java.ericzone.action.mgt.MgtMenuAction">
+			<result name="input">/WEB-INF/mgt/mgtmenumanage.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<action name="menuadd" class="com.eric.java.ericzone.action.mgt.MgtMenuAddAction">
+			<result name="input">/WEB-INF/mgt/mgtmenumanageadd.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<action name="menuaddsave" class="com.eric.java.ericzone.action.mgt.MgtMenuAddSaveAction">
+			<result name="success" type="json" />
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action> 
+		
+		<action name="menudelete" class="com.eric.java.ericzone.action.mgt.MgtMenuDeleteAction">
+			<result name="success" type="json" />
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<action name="menuupdate" class="com.eric.java.ericzone.action.mgt.MgtMenuUpdateAction">
+			<result name="input">/WEB-INF/mgt/mgtmenumanageupdate.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>	
+		
+		<action name="menuupdatesave" class="com.eric.java.ericzone.action.mgt.MgtMenuUpdateSaveAction">
+			<result name="success" type="json" />
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>	 
+		
+		<action name="menurole" class="com.eric.java.ericzone.action.mgt.MgtMenuRoleAction">
+			<result name="input">/WEB-INF/mgt/mgtmenurole.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<action name="menurolequery" class="com.eric.java.ericzone.action.mgt.MgtMenuRoleQueryAction">
+			<result name="success" type="json" />
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<action name="menurolemanage" class="com.eric.java.ericzone.action.mgt.MgtMenuRoleManageAction">
+			<result name="success" type="json" />
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action> 
+		
+		<!-- 管理员管理 -->
+		<action name="managequery" class="com.eric.java.ericzone.action.mgt.MgtManageAction">
+			<result name="input">/WEB-INF/mgt/mgtmanage.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<action name="manageadd" class="com.eric.java.ericzone.action.mgt.MgtManageAddAction">
+			<result name="input">/WEB-INF/mgt/mgtmanageadd.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<action name="manageaddsave" class="com.eric.java.ericzone.action.mgt.MgtManageAddSaveAction">
+			<result name="success" type="redirect">/mgt/managequery.xhtml</result>
+			<result name="input">/WEB-INF/mgt/mgtmanageadd.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action> 
+		
+		<action name="managedelete" class="com.eric.java.ericzone.action.mgt.MgtManageDeleteAction">
+			<result name="input" type="redirect">/mgt/managequery.xhtml</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<action name="manageupdate" class="com.eric.java.ericzone.action.mgt.MgtManageUpdateAction">
+			<result name="input">/WEB-INF/mgt/mgtmanageupdate.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>	
+		
+		<action name="manageupdatesave" class="com.eric.java.ericzone.action.mgt.MgtManageUpdateSaveAction">
+			<result name="success" type="redirect">/mgt/managequery.xhtml</result>
+			<result name="input">/WEB-INF/mgt/mgtmanageupdate.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>							
+		
+		<!-- 角色管理 -->
+		<action name="rolequery" class="com.eric.java.ericzone.action.mgt.MgtRoleQueryAction">
+			<result name="input">/WEB-INF/mgt/mgtrole.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<action name="roleadd" class="com.eric.java.ericzone.action.mgt.MgtRoleAddAction">
+			<result name="input">/WEB-INF/mgt/mgtroleadd.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>	
+					
+		<action name="roleaddsave" class="com.eric.java.ericzone.action.mgt.MgtRoleAddSaveAction">
+			<result name="success" type="redirect">/mgt/rolequery.xhtml</result>
+			<result name="input">/WEB-INF/mgt/mgtroleadd.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action> 
+		
+		<action name="roledelete" class="com.eric.java.ericzone.action.mgt.MgtRoleDeleteAction">
+			<result name="input" type="redirect">/mgt/rolequery.xhtml</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<!-- 产品类型管理 -->	
+		<action name="producttypequery" class="com.eric.java.ericzone.action.mgt.MgtProductTypeAction">
+			<result name="input">/WEB-INF/mgt/mgtproducttype.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>	
+				 
+		<action name="producttypeadd" class="com.eric.java.ericzone.action.mgt.MgtProductTypeAddAction">
+			<result name="input">/WEB-INF/mgt/mgtproducttypeadd.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>	
+					
+		<action name="producttypeaddsave" class="com.eric.java.ericzone.action.mgt.MgtProductTypeAddSaveAction">
+			<result name="success" type="redirect">/mgt/producttypequery.xhtml</result>
+			<result name="input">/WEB-INF/mgt/mgtproducttypeadd.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action> 
+		
+		<action name="producttypedelete" class="com.eric.java.ericzone.action.mgt.MgtProductTypeDeleteAction">
+			<result name="input" type="redirect">/mgt/producttypequery.xhtml</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<!-- 产品管理 -->	
+		<action name="productquery" class="com.eric.java.ericzone.action.mgt.MgtProductAction">
+			<result name="input">/WEB-INF/mgt/mgtproduct.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>	
+				 
+		<action name="productadd" class="com.eric.java.ericzone.action.mgt.MgtProductAddAction">
+			<result name="input">/WEB-INF/mgt/mgtproductadd.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>	
+					
+		<action name="productaddsave" class="com.eric.java.ericzone.action.mgt.MgtProductAddSaveAction">
+			<result name="success" type="json"/>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action> 
+		
+		<action name="productdelete" class="com.eric.java.ericzone.action.mgt.MgtProductDeleteAction">
+			<result name="success" type="json"/>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>		
+		
+		<action name="productupdate" class="com.eric.java.ericzone.action.mgt.MgtProductDetailAction">
+                <result name="input">/WEB-INF/mgt/mgtproductupdate.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <action name="productUpdateSave" class="com.eric.java.ericzone.action.mgt.MgtProductUpdateSaveAction">
+                <result name="success" type="json"/>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <action name="productMgt" class="com.eric.java.ericzone.action.mgt.MgtProductMgtAction">
+                <result name="success" type="json"/>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+		<action name="prebillplan" class="com.eric.java.ericzone.action.mgt.MgtPreBillPlanAction">
+                <result name="input">/WEB-INF/mgt/mgtprebillplan.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>        
+
+		<action name="prebillplansave" class="com.eric.java.ericzone.action.mgt.MgtPreBillPlanSaveAction">
+                <result name="input">/WEB-INF/mgt/mgtprebillplan.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <action name="readbillplan" class="com.eric.java.ericzone.action.mgt.MgtReadBillPlanAction">
+                <result type="json" />
+			<interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <action name="readbillplans" class="com.eric.java.ericzone.action.mgt.MgtReadTobillplanAction">
+              <result name="input">/WEB-INF/mgt/mgtreadbillplan.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <action name="readingBillPlan" class="com.eric.java.ericzone.action.mgt.MgtReadingBillPlanAction">
+                <result name="input">/WEB-INF/mgt/mgtreadbillplan.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+                
+        <!-- 检查产品ID是否重复 -->
+        <action name="mgtCheckProductCode" class="com.eric.java.ericzone.action.mgt.MgtCheckProductCodeAction">
+			<result type="json" />
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<!-- 商户管理 -->	
+		<action name="merchantquery" class="com.eric.java.ericzone.action.mgt.MgtMerchantQueryAction">
+			<result name="input">/WEB-INF/mgt/mgtmerchant.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<!-- 商户返点excel导出 -->
+		<action name="merchantRebatesExport" class="com.eric.java.ericzone.action.mgt.MgtMerchantRebatesExportAction">
+			<result name="success" type="stream">
+                <param name="contentType">application/vnd.ms-excel</param>
+                <param name="inputName">imageStream</param>
+                <param name="contentDisposition">attachment;filename="${filename}"</param>
+                <param name="bufferSize">409600</param>
+            </result>
+            <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <!-- 商户统计excel导出 -->
+		<action name="merchantTotalExport" class="com.eric.java.ericzone.action.mgt.MgtMerchantTotalExportAction">
+			<result name="success" type="stream">
+                <param name="contentType">application/vnd.ms-excel</param>
+                <param name="inputName">imageStream</param>
+                <param name="contentDisposition">attachment;filename="${filename}"</param>
+                <param name="bufferSize">409600</param>
+            </result>
+            <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+		
+		<action name="merchantdelete" class="com.eric.java.ericzone.action.mgt.MgtMerchantDeleteAction">
+			<result name="input" type="redirect">/mgt/merchantquery.xhtml</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<action name="merchantadd" class="com.eric.java.ericzone.action.mgt.MgtMerchantAddAction">
+			<result name="input">/WEB-INF/mgt/mgtmerchantadd.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>	
+					
+		<action name="merchantaddsave" class="com.eric.java.ericzone.action.mgt.MgtMerchantAddSaveAction">
+			<result name="success" type="json" />
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<action name="merchantriskaddsave" class="com.eric.java.ericzone.action.mgt.MgtMerchantRiskAddSaveAction">
+			<result name="success" type="json" />
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<action name="merchantdetail" class="com.eric.java.ericzone.action.mgt.MgtMerchantDetailAction">
+			<result name="input">/WEB-INF/mgt/mgtmerchantdetail.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<action name="merchantupdate" class="com.eric.java.ericzone.action.mgt.MgtMerchantUpdateAction">
+			<result name="input">/WEB-INF/mgt/mgtmerchantupdate.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>	
+					
+		<action name="merchantupdatesave" class="com.eric.java.ericzone.action.mgt.MgtMerchantUpdateSaveAction">
+			<result name="success" type="json"/>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<action name="merchantriskupdatesave" class="com.eric.java.ericzone.action.mgt.MgtMerchantRiskUpdateSaveAction">
+			<result name="success" type="json"/>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<action name="merchantmgt" class="com.eric.java.ericzone.action.mgt.MgtMerchantMgtAction">
+			<result name="input" type="redirect">/mgt/merchantquery.xhtml</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>		
+				
+		
+		<!-- 账单查询 -->
+		<action name="billquery" class="com.eric.java.ericzone.action.mgt.MgtBillQueryAction">
+			<result name="input">/WEB-INF/mgt/mgtbillview.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>	
+																				
+		<action name="billItemquery" class="com.eric.java.ericzone.action.mgt.MgtBillItemQueryAction">
+			<result name="input">/WEB-INF/mgt/mgtbillitemview.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<action name="billItemplan" class="com.eric.java.ericzone.action.mgt.MgtBillItemPlanAction">
+			<result name="input">/WEB-INF/mgt/mgtbillitemplan.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>		
+		
+		<action name="billItemupdate" class="com.eric.java.ericzone.action.mgt.MgtBillItemUpdateAction">
+			<result name="input">/WEB-INF/mgt/mgtbillitemupdate.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>	
+		
+		<action name="billItemupdatesave" class="com.eric.java.ericzone.action.mgt.MgtBillItemUpdateSaveAction">
+		    <result name="success" type="redirect">/mgt/billItemquery.xhtml?u_billId=${billItem.bBillId}</result>
+			<result name="input">/WEB-INF/mgt/mgtbillitemupdate.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<action name="adjustbillItem" class="com.eric.java.ericzone.action.mgt.MgtBillItemUpdateAction">
+			<result name="input">/WEB-INF/mgt/mgtadjustbillitem.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<action name="adjustbillItemsave" class="com.eric.java.ericzone.action.mgt.MgtBillItemAdjustSaveAction">
+		    <result name="success" type="redirect">/mgt/billItemquery.xhtml?u_billId=${billItem.bBillId}</result>
+			<result name="input">/WEB-INF/mgt/mgtadjustbillitem.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>							
+		
+		<action name="adjustbill" class="com.eric.java.ericzone.action.mgt.MgtBillAdjustAction">
+			<result name="input">/WEB-INF/mgt/mgtadjustbill.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+								
+		<action name="adjustbillsave" class="com.eric.java.ericzone.action.mgt.MgtBillAdjustSaveAction">
+		    <result name="success" type="redirect">/mgt/billItemquery.xhtml?u_billId=${bill.bBillId}</result>
+			<result name="input">/WEB-INF/mgt/mgtadjustbill.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		<!-- 短信模板 -->
+		<action name="smsTemplatequery" class="com.eric.java.ericzone.action.mgt.MgtSmsTemplateQueryAction">
+			<result name="input">/WEB-INF/mgt/mgtsmstemplate.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<action name="smstemplateadd" class="com.eric.java.ericzone.action.mgt.MgtSmsTemplateAddAction">
+			<result name="input">/WEB-INF/mgt/mgtsmstemplateadd.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>	
+		
+		<action name="smstemplatesave" class="com.eric.java.ericzone.action.mgt.MgtSmsTemplateAddSaveAction">
+			<result name="success" type="json"/>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action> 	
+		
+		<action name="smsTemplateupdate" class="com.eric.java.ericzone.action.mgt.MgtSmsTemplateDetailAction">
+                <result name="input">/WEB-INF/mgt/mgtsmstemplateupdate.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <action name="smsTemplateupdatesave" class="com.eric.java.ericzone.action.mgt.MgtSmsTemplateUpdateSaveAction">
+             <result name="success" type="json"/>
+			<interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        
+        <action name="smsTemplatedelete" class="com.eric.java.ericzone.action.mgt.MgtSmsTemplateDeleteAction">
+			<result name="input" type="redirect">/mgt/smsTemplatequery.xhtml</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>	
+		
+		<!-- 地址管理 -->		
+		<action name="areaManage" class="com.eric.java.ericzone.action.mgt.MgtAreaManageAction">
+			<result name="input" >/WEB-INF/mgt/mgtAreaManage.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action> 
+		<action name="areaTreeDate" class="com.eric.java.ericzone.action.mgt.MgtAreaTreeDateAction">
+			<result name="success" type="json" />
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>  
+		
+		<!-- 商户审批 -->
+		<action name="merchantapproval" class="com.eric.java.ericzone.action.mgt.MgtMerchantApprovalAction">
+                <result name="input">/WEB-INF/mgt/mgtmerchantapproval.jsp</result>
+                <interceptor-ref name="ManageStackWithSecurity" />
+        </action>
+        <action name="merchantapprovalsave" class="com.eric.java.ericzone.action.mgt.MgtMerchantApprovalSaveAction">
+             <result name="success" type="json"/>
+			<interceptor-ref name="ManageStackWithSecurity" />
+        </action>  
+          
+        <!-- 归属管理 -->   
+        <action name="regionManage" class="com.eric.java.ericzone.action.mgt.MgtRegionQueryAction">
+			<result name="input" >/WEB-INF/mgt/mgtRegionManage.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>   
+		<action name="regiondelete" class="com.eric.java.ericzone.action.mgt.MgtRegionDeleteAction">
+			<result name="success" type="json"/>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>		
+        <action name="regiontoadd" class="com.eric.java.ericzone.action.mgt.MgtRegionToAddAction">
+			<result name="input">/WEB-INF/mgt/mgtregionadd.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>   
+		<action name="regiontsave" class="com.eric.java.ericzone.action.mgt.MgtRegionAddAction">
+			<result name="success" type="json"/>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>    
+		<action name="regionttoupdate" class="com.eric.java.ericzone.action.mgt.MgtRegionToUpdateAction">
+			<result name="input">/WEB-INF/mgt/mgtregionupdate.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		<action name="regiontupdate" class="com.eric.java.ericzone.action.mgt.MgtRegionUpdateSaveAction">
+			<result name="success" type="json"/>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>  
+		
+		<!-- 组织机构管理 -->
+		<action name="orgquery" class="com.eric.java.ericzone.action.mgt.MgtOrgQueryAction">
+			<result name="input">/WEB-INF/mgt/mgtorg.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<action name="orgadd" class="com.eric.java.ericzone.action.mgt.MgtOrgAddAction">
+			<result name="input">/WEB-INF/mgt/mgtorgadd.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>	
+					
+		<action name="orgaddsave" class="com.eric.java.ericzone.action.mgt.MgtOrgAddSaveAction">
+			<result name="success" type="json" />
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<action name="orgupdate" class="com.eric.java.ericzone.action.mgt.MgtOrgUpdateAction">
+			<result name="input">/WEB-INF/mgt/mgtorgupdate.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>	
+					
+		<action name="orgupdatesave" class="com.eric.java.ericzone.action.mgt.MgtOrgUpdateSaveAction">
+			<result name="success" type="json" />
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>  
+		
+		<action name="orgdelete" class="com.eric.java.ericzone.action.mgt.MgtOrgDeleteAction">
+			<result name="success" type="json" />
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+		
+		<!-- 申请统计报表 -->
+        <action name="applyReport" class="com.eric.java.ericzone.action.mgt.MgtApplyReportExportAction">
+             <result name="success" type="stream">
+                <param name="contentType">application/vnd.ms-excel</param>
+                <param name="inputName">imageStream</param>
+                <param name="contentDisposition">attachment;filename="${filename}"</param>
+                <param name="bufferSize">409600</param>
+            </result>
+            <interceptor-ref name="ManageStackWithSecurity" />
+        </action> 
+        
+        <action name="merchantcyclesave" class="com.eric.java.ericzone.action.mgt.MgtMerchantCycleListAction">
+			<result name="success" type="json" />
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action> 
+		
+		<action name="merchantcycleshow" class="com.eric.java.ericzone.action.mgt.MgtMerchantCycleShowAction">
+			<result name="success" type="json" />
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action> 
+		      
+		<action name="merchantImageUploadSave" class="com.eric.java.ericzone.action.mgt.MgtMerchantImageUploadSaveAction">
+                <result type="json" />
+                <interceptor-ref name="ManageFileUpload" />
+        </action>
+        
+        
+        
+        <action name="logquery" class="com.eric.java.ericzone.action.mgt.MgtLogQueryAction">
+			<result name="input">/WEB-INF/mgt/mgtorgupdate.jsp</result>
+			<interceptor-ref name="ManageStackWithSecurity" />
+		</action>
+        
+		<!-- 富友回调接口 -->  
+		<action name="payCallBack" class="com.eric.java.ericzone.action.mgt.MgtPayCallBackAction" method="payCallBack"></action> 
+		<action name="payRefundInform" class="com.eric.java.ericzone.action.mgt.MgtPayRefundInformAction" method="payRefundInform"></action> 
+		<action name="projectAuditCallBack" class="com.eric.java.ericzone.action.mgt.MgtProjectAuditCallBackAction" method="projectAuditCallBack"></action>
+	    <action name="refundNotification" class="com.eric.java.ericzone.action.mgt.MgtRefundNotificationAction" method="refundNotification"></action> 
+	    <action name="resultSign" class="com.eric.java.ericzone.action.mgt.MgtResultSignAction" method="resultSign"></action>     
+	</package>
+
+</xwork>

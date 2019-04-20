@@ -1,0 +1,131 @@
+package com.eric.java.ericzone.services;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.poi.hssf.record.formula.functions.Count;
+
+import com.eric.java.basecontainer.hibernate.AbstractService;
+import com.eric.java.basecontainer.hibernate.exception.ServicesException;
+import com.eric.java.ericzone.awares.IMLogAware;
+import com.eric.java.ericzone.object.MLog;
+import com.eric.java.ericzone.object.MSms;
+
+import net.sf.hibernate.Session;
+import net.sf.hibernate.HibernateException;
+import net.sf.hibernate.Query;
+
+
+public class MLogService extends AbstractService implements IMLogAware{
+
+	@Override
+	public MLog insertMlog(MLog mlog) throws ServicesException {
+		return null;
+	}
+
+	@Override
+	public List getRegionMlogListByQueryMap(Map<String, String> queryMap, String regionCode) throws ServicesException {
+		Session session = this.getSession();
+		try {
+			String hqlStr = "from com.eric.java.ericzone.object.MLog as mSms where mSms.mRegionCode = ?  ";
+			
+	           if(queryMap!=null && queryMap.size()>0){
+	               if(queryMap.containsKey("mSendTel")) hqlStr += " and mSms.mSendTel = ? ";
+	               if(queryMap.containsKey("mType")) hqlStr += " and mSms.mType = ? ";
+	               if(queryMap.containsKey("mStatus")) hqlStr += " and mSms.mStatus =  ?";
+	           }
+	           
+			Query query = session.createQuery(hqlStr);
+			query.setString(0, regionCode);
+			if(queryMap!=null && queryMap.size()>0){
+				if(queryMap.containsKey("pageSize")){
+					query.setMaxResults(Integer.valueOf(queryMap.get("pageSize")));
+					query.setFirstResult(Integer.valueOf(queryMap.get("pageSize")) * Integer.valueOf(queryMap.get("page")) - Integer.valueOf(queryMap.get("pageSize")));
+				}
+			}
+           if(queryMap!=null && queryMap.size()>0){
+        	   int index = 1 ;
+               if(queryMap.containsKey("mSendTel")){
+            	   query.setString(index, queryMap.get("mSendTel"));
+            	   index++;
+               }
+               if(queryMap.containsKey("mType")){
+            	   query.setString(index, queryMap.get("mType"));
+            	   index++;
+               }
+               if(queryMap.containsKey("mStatus")){
+            	   query.setString(index, queryMap.get("mStatus"));
+            	   index++;
+               }               
+           }			
+            List list=query.list();
+            if(list!=null && list.size()>0){
+            	return list;
+            }else{
+                return null;	
+            }
+		} catch (HibernateException e) {
+			throw new ServicesException(e.toString());
+		} finally {
+			this.releaseSession(session);
+		}
+	}
+	@Override
+	public MLog getMlog(Integer mId) throws ServicesException {
+		return null;
+	}
+
+	@Override
+	public int getRegionMlogListSizeByQueryMap(Map<String, String> queryMap, String regionCode)
+			throws ServicesException {
+		Session session = this.getSession();
+		try {
+			String hqlStr = "select count(mSms.mId) from com.eric.java.ericzone.object.MLog as mSms where mSms.mRegionCode = ?  ";
+			
+	           if(queryMap!=null && queryMap.size()>0){
+	               if(queryMap.containsKey("mSendTel")) hqlStr += " and mSms.mSendTel = ? ";
+	               if(queryMap.containsKey("mType")) hqlStr += " and mSms.mType = ? ";
+	               if(queryMap.containsKey("mStatus")) hqlStr += " and mSms.mStatus =  ?";
+	           }
+	           
+			Query query = session.createQuery(hqlStr);
+			query.setString(0, regionCode);
+			if(queryMap!=null && queryMap.size()>0){
+				if(queryMap.containsKey("pageSize")){
+					query.setMaxResults(Integer.valueOf(queryMap.get("pageSize")));
+					query.setFirstResult(Integer.valueOf(queryMap.get("pageSize")) * Integer.valueOf(queryMap.get("page")) - Integer.valueOf(queryMap.get("pageSize")));
+				}
+			}
+           if(queryMap!=null && queryMap.size()>0){
+        	   int index = 1 ;
+               if(queryMap.containsKey("mSendTel")){
+            	   query.setString(index, queryMap.get("mSendTel"));
+            	   index++;
+               }
+               if(queryMap.containsKey("mType")){
+            	   query.setString(index, queryMap.get("mType"));
+            	   index++;
+               }
+               if(queryMap.containsKey("mStatus")){
+            	   query.setString(index, queryMap.get("mStatus"));
+            	   index++;
+               }               
+           }			
+            List list=query.list();
+			int count = 0 ;
+	           if(list!=null && list.size()>0){
+	           	count = (Integer)list.get(0);
+	           	return count;
+	           }else{
+	           	return 0;
+	           }
+		} catch (HibernateException e) {
+			throw new ServicesException(e.toString());
+		} finally {
+			this.releaseSession(session);
+		}
+	}
+
+	}
+
+	

@@ -1,0 +1,40 @@
+package day03;
+
+import java.io.IOException;
+import java.io.RandomAccessFile;
+
+public class RAFTest01 {
+	public static void main(String[] args) throws IOException {
+		RandomAccessFile raf =
+				new RandomAccessFile("emp.dat", "rw");
+		
+		byte[] name = new byte[32];
+		byte[] age = new byte[4];
+		byte[] gender = new byte[10];
+		byte[] salary= new byte[4];
+		byte[] hiredate = new byte[30];
+		
+		String tName;
+		int tAge;
+		String tGender;
+		int tSalary;
+		String tHiredate;
+		
+		while(raf.read() != -1) {
+			raf.read(name);
+			tName = new String(name);
+			
+			raf.read(age);
+			tAge = toInt(age);
+			
+		}
+		
+	}
+	
+	public static int toInt(byte[] b) {
+		return (b[3] & 0xff)|
+				(b[2] & 0xff)|
+				(b[1] & 0xff)|
+				(b[3] & 0xff);	
+	}
+}

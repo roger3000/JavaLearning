@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 2.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-2.0.dtd">
+      
+<hibernate-mapping package="src/com/eric/java/ericzone/object">
+	<class name="Test" table="test">
+		<id name="id" column="id" type="java.lang.Intager">
+			<generator class="native"/>
+		</id>
+		
+		<property name="username" column="username" length="11"/>
+		<property name="age" column="age" length="20"/>
+		<property name="sex" column="sex" length="1"/>
+		<property name="birthday" column="birthday" length="8"/>
+		
+	</class>
+</hibernate-mapping>

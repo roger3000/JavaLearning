@@ -1,0 +1,16 @@
+package com.eric.java.ericzone.action.mgt;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import com.eric.java.basecontainer.basetool.PaginationFunc;
+import com.eric.java.basecontainer.baseweb.EricAction;
+
+public class MgtLogQueryAction extends EricAction {
+	
+	
+
+	
+}

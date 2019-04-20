@@ -1,0 +1,20 @@
+package day03;
+
+import java.io.FileNotFoundException;
+import java.io.RandomAccessFile;
+
+public class RandomAccessFile_writeInt {
+	public static void main(String[] args) {
+		try {
+			RandomAccessFile raf
+			= new RandomAccessFile(
+					"type.dat", "rw"
+					);
+			int imax = Integer.MAX_VALUE;
+			int imax = imax >>> 24； 		//imax右移24位
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

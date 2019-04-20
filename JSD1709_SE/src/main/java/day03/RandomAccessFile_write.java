@@ -13,6 +13,7 @@ import java.io.RandomAccessFile;
 public class RandomAccessFile_write {
 	public static void main(String[] args) throws IOException {
 		RandomAccessFile raf = new RandomAccessFile("./demo.txt", "rw"); 
+		raf.write(1);
 		System.out.println(raf.readLine());
 		raf.close();
 	}
