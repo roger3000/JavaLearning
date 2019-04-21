@@ -115,3 +115,87 @@
 2019-04-20 21:17:30,240 [Worker-2: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Users\lifer\workspace\JSD1709_SE\src\main\resources
 2019-04-20 21:17:30,241 [Worker-2: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2019-04-20 21:17:30,241 [Worker-2: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\Users\lifer\workspace\JSD1709_SE\src\test\resources
+2019-04-21 16:43:31,972 [Worker-6: Loading available Gradle versions] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2019-04-21 16:44:02,355 [Worker-10: Building workspace] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.tede:JSD1709_SE:0.0.1-SNAPSHOT @ C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\pom.xml.
+2019-04-21 16:44:02,355 [Worker-12: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.tede:JSD1709_SE:0.0.1-SNAPSHOT @ C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\pom.xml.
+2019-04-21 16:44:03,248 [Worker-10: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 16:44:03,248 [Worker-10: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\main\resources
+2019-04-21 16:44:03,250 [Worker-10: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 16:44:03,250 [Worker-10: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\test\resources
+2019-04-21 16:44:04,954 [Worker-1: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.tede:JSD1709_SE:0.0.1-SNAPSHOT @ C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\pom.xml.
+2019-04-21 16:44:05,595 [Worker-4: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 16:44:05,596 [Worker-4: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\main\resources
+2019-04-21 16:44:05,597 [Worker-4: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 16:44:05,598 [Worker-4: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\test\resources
+2019-04-21 16:46:20,242 [Worker-8: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 16:46:20,242 [Worker-8: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\main\resources
+2019-04-21 16:46:20,243 [Worker-8: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 16:46:20,244 [Worker-8: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\test\resources
+2019-04-21 16:46:21,264 [Worker-2: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 16:46:21,265 [Worker-2: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\main\resources
+2019-04-21 16:46:21,267 [Worker-2: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 16:46:21,270 [Worker-2: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\test\resources
+2019-04-21 16:46:50,068 [Worker-2: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 16:46:50,069 [Worker-2: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\main\resources
+2019-04-21 16:46:50,070 [Worker-2: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 16:46:50,070 [Worker-2: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\test\resources
+2019-04-21 16:47:42,571 [Worker-2: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 16:47:42,572 [Worker-2: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\main\resources
+2019-04-21 16:47:42,573 [Worker-2: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 16:47:42,573 [Worker-2: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\test\resources
+2019-04-21 16:50:39,343 [Worker-9: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 16:50:39,343 [Worker-9: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\main\resources
+2019-04-21 16:50:39,344 [Worker-9: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 16:50:39,345 [Worker-9: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\test\resources
+2019-04-21 16:50:40,368 [Worker-14: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 16:50:40,368 [Worker-14: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\main\resources
+2019-04-21 16:50:40,370 [Worker-14: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 16:50:40,370 [Worker-14: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\test\resources
+2019-04-21 16:50:55,630 [Worker-9: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 16:50:55,630 [Worker-9: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\main\resources
+2019-04-21 16:50:55,633 [Worker-9: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 16:50:55,633 [Worker-9: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\test\resources
+2019-04-21 17:00:39,367 [Worker-1: Loading available Gradle versions] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2019-04-21 17:00:43,932 [Worker-2: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 17:00:43,948 [Worker-2: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\main\resources
+2019-04-21 17:00:43,951 [Worker-2: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 17:00:43,951 [Worker-2: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\test\resources
+2019-04-21 17:00:46,266 [Worker-17: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 17:00:46,267 [Worker-17: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\main\resources
+2019-04-21 17:00:46,270 [Worker-17: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 17:00:46,270 [Worker-17: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\test\resources
+2019-04-21 17:02:12,294 [Worker-10: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 17:02:12,295 [Worker-10: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\main\resources
+2019-04-21 17:02:12,296 [Worker-10: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 17:02:12,296 [Worker-10: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\test\resources
+2019-04-21 17:02:13,360 [Worker-3: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 17:02:13,360 [Worker-3: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\main\resources
+2019-04-21 17:02:13,361 [Worker-3: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 17:02:13,361 [Worker-3: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\test\resources
+2019-04-21 17:06:46,132 [Worker-11: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 17:06:46,132 [Worker-11: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\main\resources
+2019-04-21 17:06:46,134 [Worker-11: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 17:06:46,134 [Worker-11: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\test\resources
+2019-04-21 17:07:33,329 [Worker-11: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 17:07:33,330 [Worker-11: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\main\resources
+2019-04-21 17:07:33,331 [Worker-11: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 17:07:33,331 [Worker-11: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\test\resources
+2019-04-21 17:07:48,878 [Worker-16: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 17:07:48,879 [Worker-16: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\main\resources
+2019-04-21 17:07:48,880 [Worker-16: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 17:07:48,880 [Worker-16: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\test\resources
+2019-04-21 17:09:05,173 [Worker-11: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 17:09:05,173 [Worker-11: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\main\resources
+2019-04-21 17:09:05,176 [Worker-11: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 17:09:05,177 [Worker-11: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\test\resources
+2019-04-21 17:09:47,153 [Worker-5: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 17:09:47,154 [Worker-5: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\main\resources
+2019-04-21 17:09:47,155 [Worker-5: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 17:09:47,155 [Worker-5: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\test\resources
+2019-04-21 17:11:13,672 [Worker-13: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 17:11:13,673 [Worker-13: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\main\resources
+2019-04-21 17:11:13,674 [Worker-13: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 17:11:13,674 [Worker-13: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\test\resources
+2019-04-21 17:11:14,723 [Worker-13: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 17:11:14,723 [Worker-13: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\main\resources
+2019-04-21 17:11:14,724 [Worker-13: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
