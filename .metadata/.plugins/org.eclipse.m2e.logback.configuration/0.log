@@ -199,3 +199,4 @@
 2019-04-21 17:11:14,723 [Worker-13: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2019-04-21 17:11:14,723 [Worker-13: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\main\resources
 2019-04-21 17:11:14,724 [Worker-13: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2019-04-21 17:11:14,724 [Worker-13: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Ðíð©Èª\git\JavaLearning\JSD1709_SE\src\test\resources
