@@ -20,5 +20,7 @@ public class String_rename {
 		String[] data1 = sb.toString().split(regex);
 		sb.replace(0, sb.length(), System.currentTimeMillis()+"."+data1[1]);
 		System.out.println(sb.toString());
+		
+		scanner.close();
 	}
 }

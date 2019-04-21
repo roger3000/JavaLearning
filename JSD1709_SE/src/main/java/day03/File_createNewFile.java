@@ -1,7 +1,6 @@
 package day03;
 
 import java.io.File;
-import java.io.IOException;
 
 /**
  * 使用File创建一个文件

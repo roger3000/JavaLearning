@@ -1,6 +1,5 @@
 package day03;
 
-import java.io.File;
 import java.io.RandomAccessFile;
 
 public class CopyDemo1 {
