@@ -1,7 +1,6 @@
 package day04;
 
 import java.io.FileOutputStream;
-import java.io.IOError;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
@@ -12,10 +11,11 @@ public class Note {
 		Scanner scanner =
 				new Scanner(System.in);
 		
+		System.out.println("请输入文件名");
 		String filename = scanner.nextLine();
 		
 		FileOutputStream fos =
-				new FileOutputStream(filename);
+				new FileOutputStream(filename, true);
 		OutputStreamWriter osw = 
 				new OutputStreamWriter(fos, "UTF-8");
 		PrintWriter pw =
@@ -32,8 +32,8 @@ public class Note {
 			pw.println(line);
 		}
 		
-		fos.close();
-		osw.close();
+
 		pw.close();
+		scanner.close();
 	}
 }
