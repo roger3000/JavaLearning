@@ -1,7 +1,6 @@
 package day04;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -18,7 +17,7 @@ public class FIS_read {
 				new FileInputStream("fos.txt");
 		
 		byte[] data = new byte[100];
-		int len = fis.read(data);
+		fis.read(data);
 		System.out.println(new String(data,"UTF-8"));
 		
 		fis.close();

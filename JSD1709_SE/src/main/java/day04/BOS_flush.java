@@ -18,6 +18,6 @@ public class BOS_flush {
 		bos.flush();
 		
 		System.out.println("写出完毕");
-//		bos.close(); 		//关闭时 缓冲流会flush
+		bos.close(); 		//关闭时 缓冲流会flush
 	}
 }
