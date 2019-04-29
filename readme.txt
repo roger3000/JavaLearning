@@ -1,0 +1,2 @@
+将客户端发送过来的请求封装到一个HttpRequest对象中
+而不在ClientHandler中直接处理
