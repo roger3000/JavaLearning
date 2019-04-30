@@ -3,6 +3,7 @@ package cn.tedu.http;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,6 +20,11 @@ public class HttpRequest {
 	private String method;
 	private String uri;
 	private String protocol;
+	
+	//请求信息
+	private String requestLine;
+	//请求附带的所有参数
+	private Map<String,String> params = new HashMap<String, String>();
 	/*
 	 * 消息头中的内容
 	 * 
@@ -38,6 +44,7 @@ public class HttpRequest {
 		 */
 		parseRequestLine(in);
 		parseHeaders(in);
+		parseUri();
 	}
 	/**
 	 * 解析请求行
@@ -53,7 +60,6 @@ public class HttpRequest {
 		 * 3. 将拆出来的字符串保存到对应设置上
 		 */
 			String line = readLine(in);
-			System.out.println(line);
 			String[] str = line.trim().split("\\s");
 			
 			if(str != null && str.length > 1 ) {
@@ -64,12 +70,31 @@ public class HttpRequest {
 		
 	}
 	
+	/*
+	 * 解析uri
+	 */
+	public void parseUri() {
+		if(uri != null && uri.contains("?")) {
+			requestLine = uri.substring(0, uri.indexOf("?"));
+			parseGet(uri.substring(uri.indexOf("?")+1));
+			
+		}
+	}
+	
+	public void parseGet(String input) {
+		String[] strs = input.split("&");
+		for (int i = 0; i < strs.length; i++) {
+			String key = strs[i].substring(0, strs[i].indexOf("="));
+			String value = strs[i].substring(strs[i].indexOf("=")+1);
+			params.put(key, value);
+		}
+	}
+	
 	/**
 	 * 解析消息头
 	 * @return
 	 */
 	private void parseHeaders(InputStream in) {
-		System.out.println("读取消息头");
 		while(true) {
 			String line = readLine(in);
 			if("".equals(line)) {
@@ -80,7 +105,6 @@ public class HttpRequest {
 			
 			this.headers.put(name, value);
 		}
-		System.out.println(headers);
 	}
 	
 	public String readLine(InputStream in) {
