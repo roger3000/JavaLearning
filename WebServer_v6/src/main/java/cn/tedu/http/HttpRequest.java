@@ -78,6 +78,8 @@ public class HttpRequest {
 			requestLine = uri.substring(0, uri.indexOf("?"));
 			parseGet(uri.substring(uri.indexOf("?")+1));
 			
+		}else if(uri != null) {
+			requestLine = uri;
 		}
 	}
 	
@@ -129,6 +131,15 @@ public class HttpRequest {
 		return sb.toString().trim();
 	}
 	
+	/**
+	 * 根据给定的参数名获取参数值
+	 * @param name
+	 * @return
+	 */
+	public String getParameter(String name) {
+		return params.get(name);
+	}
+	
 	public String getMethod() {
 		return method;
 	}
@@ -141,5 +152,9 @@ public class HttpRequest {
 	public Map<String, String> getHeaders() {
 		return headers;
 	}
+	public String getRequestLine() {
+		return requestLine;
+	}
+	
 	
 }
