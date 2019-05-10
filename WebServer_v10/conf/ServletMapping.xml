@@ -2,4 +2,5 @@
 <Mappings>
 	<mapping uri="/myweb/reg" className="servlets.RegServlet"></mapping>
 	<mapping uri="/myweb/login" className="servlets.LoginServlet"></mapping>
+	<mapping uri="/web/web/reg" className="servlets.RegWebServlet"></mapping>
 </Mappings>

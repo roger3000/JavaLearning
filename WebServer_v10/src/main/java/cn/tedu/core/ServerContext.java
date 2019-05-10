@@ -27,7 +27,7 @@ public class ServerContext {
 		servletMapping = new HashMap<String, String>();
 		SAXReader reader = new SAXReader();
 		try {
-			Document doc = reader.read(new File("conf//ServletMapping.xml"));
+			Document doc = reader.read(new File("conf/ServletMapping.xml"));
 			Element root = doc.getRootElement();
 			List<Element> list = root.elements();
 			for(Element ele : list) {
