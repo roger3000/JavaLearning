@@ -25,6 +25,9 @@ public class HttpResponse {
 	private OutputStream out;
 	private Map<String,String> headers = new HashMap<String,String>();
 	
+	//状态响应码
+	private int statusCode = HttpContext.STATUS_CODE_OK;
+	
 	public HttpResponse(OutputStream out) {
 		this.out = out;
 	}
@@ -37,7 +40,7 @@ public class HttpResponse {
 	
 	//发送状态行
 	public void sendStatusLine() {
-		String line ="HTTP/1.1 200 OK";
+		String line ="HTTP/1.1"+statusCode+HttpContext.getCode_reason_mapping(statusCode);
 		println(line);
 	}
 	
@@ -117,6 +120,10 @@ public class HttpResponse {
 
 	public void setEntity(File entity) {
 		this.entity = entity;
+	}
+
+	public void setStatusCode(int code) {
+		this.statusCode = code;
 	}
 	
 }

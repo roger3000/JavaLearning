@@ -22,7 +22,7 @@ public class ServerContext {
 	static {
 		initServletMapping();
 	}
-	
+
 	private static void initServletMapping() {
 		servletMapping = new HashMap<String, String>();
 		SAXReader reader = new SAXReader();
@@ -30,10 +30,9 @@ public class ServerContext {
 			Document doc = reader.read(new File("conf/ServletMapping.xml"));
 			Element root = doc.getRootElement();
 			List<Element> list = root.elements();
-			for(Element ele : list) {
+			for (Element ele : list) {
 				String key = ele.attributeValue("uri");
 				String value = ele.attributeValue("className");
-				
 				servletMapping.put(key, value);
 			}
 		} catch (DocumentException e) {
