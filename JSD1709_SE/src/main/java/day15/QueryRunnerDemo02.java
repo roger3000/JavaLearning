@@ -8,6 +8,8 @@ import java.util.List;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.ArrayHandler;
 import org.apache.commons.dbutils.handlers.ArrayListHandler;
+import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 /**
  * 	queryrunner的 update方法, delete方法 query方法
@@ -59,12 +61,20 @@ public class QueryRunnerDemo02 {
 		
 		try {
 //			Object[] obj= qr.query(conn, sql, new ArrayHandler());
-			List<Object[]> obj = qr.query(conn, sql, new ArrayListHandler());
-			for (Object[] objects : obj) {
-				for (Object object : objects) {
-					System.out.print(object);
-				}
-				System.out.println("");
+			
+			//arraylisthandler
+//			List<Object[]> obj = qr.query(conn, sql, new ArrayListHandler());
+//			for (Object[] objects : obj) {
+//				for (Object object : objects) {
+//					System.out.print(object);
+//				}
+//				System.out.println("");
+//			}
+			
+			//beanhandler
+			List<Sort> bean = qr.query(conn, sql, new BeanListHandler<Sort>(Sort.class));
+			for (Sort sort : bean) {
+				System.out.println(sort);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
