@@ -21,7 +21,6 @@ class Demo {
 		Too t1 = new Too() {
 			int b = 6;
 
-			@Override
 			public void test(int a) {
 				// TODO Auto-generated method stub
 				System.out.println(a + this.b);
