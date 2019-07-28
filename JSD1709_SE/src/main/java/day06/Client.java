@@ -1,10 +1,6 @@
 package day06;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
@@ -21,9 +17,9 @@ public class Client {
 	 * 通过输出流将数据发送给对方计算机
 	 */
 	private Socket socket;
-	private Scanner scanner;
+
 	//用来初始化客户端
-	public Client() {
+	private Client() {
 		try {
 			/*
 			 * 实例化socket时需要传入两个参数
@@ -35,8 +31,8 @@ public class Client {
 					"localhost",
 					8088);
 			System.out.println("客户端连接成功");
-			
-			
+
+
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -52,7 +48,7 @@ public class Client {
 			String str = new String(b,0,len,"UTF-8");
 			System.out.println(str);
 
-			scanner = new Scanner(System.in);
+			Scanner scanner = new Scanner(System.in);
 			
 			OutputStream out = socket.getOutputStream();
 			OutputStreamWriter osw = new OutputStreamWriter(out, "UTF-8");

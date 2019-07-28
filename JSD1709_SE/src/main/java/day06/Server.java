@@ -20,9 +20,8 @@ import java.net.Socket;
 public class Server {
 	
 	private ServerSocket server;
-	private Socket socket;
-	
-	public Server() {
+
+	private Server() {
 		try {
 			/*
 			 *实例化ServerSocket的同时申请服务端口 
@@ -48,7 +47,7 @@ public class Server {
 			 */
 			System.out.println("等待客户端连接......");
 			System.out.println("server"+server);
-			socket = server.accept();
+			Socket socket = server.accept();
 			System.out.println("server"+server);
 			System.out.println("客户端连接成功");
 			

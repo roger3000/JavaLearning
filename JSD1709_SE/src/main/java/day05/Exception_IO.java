@@ -16,9 +16,10 @@ public class Exception_IO {
 			e.printStackTrace();
 		}finally {
 			try {
-				fos.close();
+                if (fos != null) {
+                    fos.close();
+                }
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

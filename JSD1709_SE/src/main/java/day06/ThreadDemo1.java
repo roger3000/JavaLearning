@@ -24,9 +24,9 @@ public class ThreadDemo1 {
 }
 
 class MyThread extends Thread {
-    String str;
+    private String str;
 
-    public MyThread(String str) {
+    MyThread(String str) {
         this.str = str;
     }
 
