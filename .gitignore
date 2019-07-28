@@ -8,4 +8,4 @@
 /RemoteSystemsTempFiles
 .classpath
 .project
-.iml
+*.iml
