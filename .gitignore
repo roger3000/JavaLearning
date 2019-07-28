@@ -1,2 +1,9 @@
-.metadata/
-.recommenders/
+/.metadata/
+/.recommenders/
+/.idea
+/.vscode
+/.settings
+/backup
+/target
+/RemoteSystemsTempFiles
+.classpath
