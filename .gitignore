@@ -7,3 +7,5 @@
 /target
 /RemoteSystemsTempFiles
 .classpath
+.project
+.iml
