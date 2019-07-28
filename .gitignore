@@ -1,8 +1,8 @@
-/.metadata/
-/.recommenders/
+.metadata/
+.recommenders/
 .idea
 .vscode
-/.settings
+.settings
 /backup
 /target
 /RemoteSystemsTempFiles
