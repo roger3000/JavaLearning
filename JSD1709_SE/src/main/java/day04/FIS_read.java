@@ -18,8 +18,10 @@ public class FIS_read {
 		
 		byte[] data = new byte[100];
 		fis.read(data);
+		System.out.println(
+
+		);
 		System.out.println(new String(data,"UTF-8"));
-		
 		fis.close();
 	}
 }
