@@ -18,7 +18,7 @@ public class ParseXmlDemo {
 		 * 3通过document获取根元素
 		 */
 		
-		List<Emp> list = new ArrayList<Emp>();
+		List<Emp1> list = new ArrayList<Emp1>();
 		try {
 			SAXReader reader = new SAXReader();
 			Document doc = reader.read(new FileInputStream("emplist.xml"));
@@ -47,13 +47,13 @@ public class ParseXmlDemo {
 				//获取id
 				int id = Integer.parseInt(empEle.attributeValue("id"));
 
-				Emp emp = new Emp(id, name, age, gender, salary);
-				list.add(emp);
+				Emp1 emp1 = new Emp1(id, name, age, gender, salary);
+				list.add(emp1);
 			}
 			
 			System.out.println("解析完毕");
-			for(Emp emp : list) {
-				System.out.println(emp);
+			for(Emp1 emp1 : list) {
+				System.out.println(emp1);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception

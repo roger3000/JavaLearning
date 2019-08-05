@@ -29,10 +29,10 @@ public class WriteXmlDemo {
 		 * 5 通过XMLWriter将Document写出以形成XML文档
 		 */
 		
-		List<Emp> list = new ArrayList<Emp>();
-		list.add(new Emp(7, "tom", 18, "男", 19999));
-		list.add(new Emp(8, "jerry", 19, "男", 2009));
-		list.add(new Emp(9, "dandy", 20, "男", 199));
+		List<Emp1> list = new ArrayList<Emp1>();
+		list.add(new Emp1(7, "tom", 18, "男", 19999));
+		list.add(new Emp1(8, "jerry", 19, "男", 2009));
+		list.add(new Emp1(9, "dandy", 20, "男", 199));
 		
 		Document doc = DocumentHelper.createDocument();
 		//该方法只能用一次
@@ -41,19 +41,19 @@ public class WriteXmlDemo {
 		/*
 		 * 将每一个emp实例以一个<emp>标签的形式添加到根标签中
 		 */
-		for(Emp emp: list) {
+		for(Emp1 emp1 : list) {
 			Element sonEle = root.addElement("emp");
 			
 			Element nameEle = sonEle.addElement("name");
-			nameEle.addText(emp.getName());
+			nameEle.addText(emp1.getName());
 			
-			Element ageEle = sonEle.addElement("age").addText(emp.getName()+"");
+			Element ageEle = sonEle.addElement("age").addText(emp1.getName()+"");
 			
-			Element genderEle = sonEle.addElement("gender").addText(emp.getGender());
+			Element genderEle = sonEle.addElement("gender").addText(emp1.getGender());
 			
-			Element salaryEle = sonEle.addElement("salary").addText(emp.getSalary()+"");
+			Element salaryEle = sonEle.addElement("salary").addText(emp1.getSalary()+"");
 			
-			sonEle.addAttribute("id", emp.getId()+"");
+			sonEle.addAttribute("id", emp1.getId()+"");
 		}
 		
 		try {
