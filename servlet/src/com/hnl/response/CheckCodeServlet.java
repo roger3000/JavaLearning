@@ -32,13 +32,18 @@ public class CheckCodeServlet extends HttpServlet {
 
         //2.3写验证码
         String str = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        StringBuilder sb = new StringBuilder();
         Random random = new Random();
         for(int i=1; i<=4; i++){
             int index = random.nextInt(str.length());
             //获取字符
             char c = str.charAt(index);
+            sb.append(c);
             graphics.drawString(c+"", width/5*i, height/2);
         }
+        String checkCode = sb.toString();
+        System.out.println(checkCode);
+        request.getSession().setAttribute("checkCode", checkCode);
 
         //2.4画干扰线
         graphics.setColor(Color.green);

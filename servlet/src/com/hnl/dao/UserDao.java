@@ -11,13 +11,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
  */
 public class UserDao {
     //声明JDBCTemplate对象共用
-    private JdbcTemplate template = new JdbcTemplate(JDBCUtils.getDataSource());
+    private static JdbcTemplate template = new JdbcTemplate(JDBCUtils.getDataSource());
     /**
      * 登陆方法
      * @param user 只有用户名和密码
      * @return  user包含用户全部数据
      */
-    public User login(User user){
+    public static User login(User user){
         try {
             //编写sql
             String sql = "select * from user where username = ? and password = ?";
@@ -29,7 +29,6 @@ public class UserDao {
 
             return query;
         } catch (DataAccessException e) {
-            e.printStackTrace();
             return null;
         }
     }

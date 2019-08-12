@@ -14,6 +14,7 @@ public class SuccessServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         User user = (User) request.getAttribute("user");
+        System.out.println("登陆成功");
 
 
         if(user != null){
