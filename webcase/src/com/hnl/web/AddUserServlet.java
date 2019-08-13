@@ -37,10 +37,10 @@ public class AddUserServlet extends HttpServlet {
 
         if(success){
             request.setAttribute("msg", "添加成功");
-            request.getRequestDispatcher("UserListServlet").forward(request, response);
+            response.sendRedirect("UserListServlet");
         }else{
             request.setAttribute("msg", "添加失败");
-            request.getRequestDispatcher("UserListServlet").forward(request, response);
+            response.sendRedirect("UserListServlet");
         }
     }
 
