@@ -26,9 +26,17 @@
             text-align: center;
         }
     </style>
+    <script>
+        function deleteUser(id){
+            if(confirm("您确定要删除吗")){
+                location.href="DeleteUserServlet?id="+id;
+            }
+        }
+    </script>
 </head>
 <body>
 <div class="container">
+    <p class="alert" style="color: red">${msg}</p>
     <h3 style="text-align: center">用户信息列表</h3>
     <table border="1" class="table table-bordered table-hover">
         <tr class="success">
@@ -50,7 +58,7 @@
                 <td>${user.address}</td>
                 <td>${user.qq}</td>
                 <td>${user.email}</td>
-                <td><a class="btn btn-default btn-sm" href="update.html">修改</a>&nbsp;<a class="btn btn-default btn-sm" href="">删除</a></td>
+                <td><a class="btn btn-default btn-sm" href="UpdateUserServlet?id=${user.id}">修改</a>&nbsp;<a class="btn btn-default btn-sm" href="javaScript:deleteUser(${user.id});">删除</a></td>
             </tr>
         </c:forEach>
         <tr>

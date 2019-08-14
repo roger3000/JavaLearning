@@ -19,8 +19,9 @@ import java.util.Map;
 public class AddUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        //从request中读取数据装载到user bean中
         request.setCharacterEncoding("utf-8");
+
+        //从request中读取数据装载到user bean中
         User user = new User();
         Map<String, String[]> parameterMap = request.getParameterMap();
         try {
@@ -36,10 +37,10 @@ public class AddUserServlet extends HttpServlet {
         boolean success = imp.addUser(user);
 
         if(success){
-            request.setAttribute("msg", "添加成功");
+            request.getSession().setAttribute("msg", "添加成功");
             response.sendRedirect("UserListServlet");
         }else{
-            request.setAttribute("msg", "添加失败");
+            request.getSession().setAttribute("msg", "添加失败");
             response.sendRedirect("UserListServlet");
         }
     }
