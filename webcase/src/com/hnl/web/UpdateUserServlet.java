@@ -25,9 +25,7 @@ public class UpdateUserServlet extends HttpServlet {
             User user = new User();
             try {
                 BeanUtils.populate(new User(), request.getParameterMap());
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
+            } catch (IllegalAccessException | InvocationTargetException e) {
                 e.printStackTrace();
             }
             boolean b = userService.updateUser(user);

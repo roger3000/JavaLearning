@@ -1,6 +1,7 @@
 package com.hnl.service.Imp;
 
 import com.hnl.dao.Imp.UserDaoImp;
+import com.hnl.dao.UserDao;
 import com.hnl.domain.User;
 import com.hnl.service.UserService;
 
@@ -34,5 +35,19 @@ public class UserServiceImp implements UserService {
     @Override
     public boolean deleteUser(String id) {
        return dao.delete(id);
+    }
+
+    @Override
+    public boolean delUsers(String[] uids) {
+        //遍历数组
+        UserDao userDao = new UserDaoImp();
+        boolean flag = false;
+        for (String uid : uids) {
+            boolean success = userDao.delete(uid);
+            if(success){
+                flag = true;
+            }
+        }
+        return flag;
     }
 }

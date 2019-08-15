@@ -22,4 +22,6 @@ public interface UserService {
     public boolean updateUser(User user);
 
     public boolean deleteUser(String id);
+
+    public boolean delUsers(String[] uids);
 }
